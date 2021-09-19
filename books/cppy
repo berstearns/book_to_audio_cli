@@ -1,0 +1,564 @@
+[
+    {
+        "type": "chapter",
+        "title": "Introduction",
+        "sections": [
+            {
+                "type": "section",
+                "title": " Abstract Types and Essential Data Structures",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We will now tackle a theme that is at the heart of the notion of efficient programming: the data structures underlying our programs to solve problems.An abstract type is a description of the possible values that a set of objects can take on, the operations that can be performed on these objects and the behaviour of these operations."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "An abstract type can thus be seen as a specification.A data structure is a concrete way to organise the data in order to treat them efficiently, respecting the clauses in the specification."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Thus, we can implement an abstract type by one or more different data structures and determine the complexity in time and memory of each operation."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Thereby, based on the frequency of the operations that need to be executed, we will prefer one or another of the implementations of an abstract type to solve a given problem.To program well, a mastery of the data structures offered by a language and its associated standard library is essential."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In this section, we review the most useful data structures for programming competitions."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "1.5.1 Stacks",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "A stack (see Figure 1.2) is an object that keeps track of a set of elements and pro- vides the following operations: test if the stack is empty, add an element to the top of the stack (push), access the element at the top of the stack and remove an ele- ment (pop)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Python lists can serve as stacks."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "An element is pushed with the method append(element) and popped with the method pop()."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "If a list is used as a Boolean, for example as the condition of an if or while instruction, it takes on the value True if and only if it is non-empty."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In fact, this isthe case for all objects implementing the method __len__; for these, if x: behaves exactly like if len(x) > 0:."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "All of these operations execute in constant time."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "1.5.2 Dictionaries",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "A dictionary allows the association of keys to values, in the same manner that an array associates indices to values."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The internal workings are based on a hash table, which uses a hash function to associate the elements with indices in an array, and implements a mechanism of collision management in the case where different elements are sent to the same index."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In the best case, the read and write operations on a dictionary execute in constant time, but in the worst case they execute in linear time if it is necessary to run through a linear number of keys to handle the collisions."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In practice, this degenerate case arrives only rarely, and in this book, we generally assume that accesses to dictionary entries take constant time."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "If the keys are of the form 0,1, ."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": ",n \u2212 1, it is, of course, always preferable for performance reasons to use a simple array."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "1.5.3 Queues",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "A queue is similar to a stack, with the difference that elements are added to the end of the queue (enqueued) and are removed from the front of the queue (dequeued)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "A queue is also known as a FIFO queue (first in, first out, like a waiting line), whereas a stack is called LIFO (last in, first out, like a pile of plates)."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In the Python standard library, there are two classes implementing a queue."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The first, Queue, is a synchronised implementation, meaning that several processes can access it simultaneously."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "As the programs of this book do not exploit parallelism, the use of this class is not recommended, as it entails a slowdown because of the use of semaphores for the synchronisation."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The second class is deque (for double- ended queue)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In addition to the methods append(element) and popleft(), which, respectively, add to the end of the queue and remove from the head of the queue, deque offers the methods appendleft(element) and pop(), which add to the head of the queue and remove from the end of the queue."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We can thus speak of a queue with two ends."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This more sophisticated structure will be found useful in Section 8.2 on page 126, where it is used to find the shortest path in a graph the edges of which have weights 0 or 1."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We recommend the use of deque\u2014and in general, the use of the data structures provided by the standard library of the language\u2014but as an example we illustrate here how to implement a queue using two stacks."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "One stack corresponds to the head of the queue for extraction and the other corresponds to the tail for insertion."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Once the headstack is empty, it is swapped with the tail stack (reversed)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The operator __len__ uses len(q) to recover the number of elements in the queue q, and then if q can be used to test if q is non-empty, happily in constant time."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "1.5.4 Priority Queues and Heaps",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "A priority queue is an abstract type allowing elements to be added and an element with minimal key to be removed."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It turns out to be very useful, for example, in sorting an array (heapsort), in the construction of a Huffman code (see Section 10.1 on page 172) and in the search for the shortest path between two nodes in a graph (see Dijkstra\u2019s algorithm, Section 8.3 on page 127)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It is typically implemented with a heap, which is a data structure in the form of a tree.."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Perfect and Quasi-Perfect Binary Trees"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We begin by examining a very specific type of data structure: the quasi-perfect binary tree."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For more information on these trees, see Chapter 10 on page 171, dedicated to them."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "A binary tree is either empty or is made up of a node with two children or subtrees, left and right."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The node at the top of the tree is the root, while the nodes with two empty children, at the bottom of the tree, are the leaves."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "A binary tree is perfect if all its leaves are at the same distance from the root."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It is quasi-perfect if all its leaves are on, at most, two levels, the second level from the bottom is completely full and all the leaves on the bottom level are grouped to the left."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Such a tree can conveniently be represented by an array, see Figure 1.3."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The element at index 0 of this array is ignored."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The root is found at index 1, and the two children of a node i are at 2i and 2i +1."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Simple index manipulations allow us to ascend or descend in the tree."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Priority Queues and Heaps"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "A heap, also known as a tournament tree, is a tree verifying the heap property: each node has a key smaller than each of its children, for a certain order relation."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The root of a heap is thus the element with the smallest key."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "A variant known as a max-heap exists, wherein each node has a key greater that each of its children."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In general, we are interested in binary heaps, which are quasi-perfect binary tour- nament trees."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This data structure allows the extraction of the smallest element and the insertion of a new element with a logarithmic cost, which is advantageous."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The objects in question can be from an arbitrary set of elements equipped with a total order relation."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "A heap also allows an update of the priority of an element, which is a useful operation for Dijkstra\u2019s algorithm (see Section 8.1 on page 125) when a shorter path has been discovered towards a summit."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In Python, heaps are implemented by the module heapq."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This module provides a function to transform an array A into a heap (heapify(A)), which results in an array representing a quasi-perfect tree as described in the preceding section, except that the element with index 0 does not remain empty and instead contains the root."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The module also allows the insertion of a new element (heappush(heap,element)) and the extraction of the minimal element (heappop(heap))."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "However, this module does not permit the value of an element in the heap to be changed, an operation useful for Dijkstra\u2019s algorithm to improve the time complexity."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We thus propose the following implementation, which is more complete.."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Implementation details"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The structure contains an array heap, storing the heap itself, as well as a dictionary rank, allowing the determination of the index of an element stored in the heap."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The principal operations are push and pop."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "A new element is inserted with push: it is added as the last leaf in the heap, and then the heap is reorganised to respect the heap order."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The minimal element is extracted with pop: the root is replaced by the last leaf in the heap, and then the heap is reorganised to respect the heap order, see Figure 1.4."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The operator __len__ returns the number of elements in the heap."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The existence of this operator permits the inner workings of Python to implicitly convert a heap to a Boolean and to perform such conditional tests as, for example, while h, which loops while the heap h is non-empty."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The average complexity of the operations on our heap is O(logn); however, the worst-case complexity is O(n), due to the use of the dictionary (rank)."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The reorganisation is done with the operations up(i) and down(i), which are called whenever an element with index i is too small with respect to its parent (for up) or too large for its children (for down)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Hence, up effects a series of exchanges of a node with its parents, climbing up the tree until the heap order is respected."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The action of down is similar, for an exchange between a node and its child with the smallest value.Finally, the method update permits the value of a heap element to be changed."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It then calls up or down to preserve the heap order."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It is this method that requires the introduction of the dictionary rank."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "1.5.5 Union-Find"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Union-find is a data structure used to store a partition of a universe V and that allows the following operations, also known as requests in the context of dynamic data structures:",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "find(v) returns a canonical element of the set containing v. To test if u and v are in the same set, it suffices to compare find(u) with find(v)."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "union(u,v) combines the set containing u with that containing v."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Our principal application of this structure is to determine the connected components of a graph, see Section 6.5 on page 94."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Every addition of an edge will correspond to a call to union, while find is used to test if two vertices are in the same component."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Union-find is also used in Kruskal\u2019s algorithm to determine a minimal spanning tree of a weighted graph, see Section 10.4 on page 179."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Data Structures with Quasi-Constant Time per Request"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "We organise the elements of a set in an oriented tree towards a canonical element, see Figure 1.5..Each element v has a reference parent[v] towards an element higher in the tree..The root v\u2014the canonical element of the set\u2014is indicated by a special value in parent[v]: we can choose 0, \u22121, or v itself, as long as we are consistent..We also store the size of the set in an array size[v], where v is the canonical element..There are two ideas in this data structure:",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "When traversing an element on the way to the root, we take advantage of the opportunity to compress the path, i.e."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "we link directly to the root that the elements encountered."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "During a union, we hang the tree of smaller rank beneath the root of the tree of larger rank."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The rank of a tree corresponds to the depth it would have if none of the paths were compressed."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "It can be proved that any arbitrary sequence of m operations union or find on a universe of size n costs a time O((m+n)\u03b1(n)), where \u03b1 is the inverse of Ackermann\u2019s function, which in practice can be considered as the constant 4."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "1.6 Techniques"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "1.6.1 Comparison",
+                "paragraphs": []
+            },
+            {
+                "type": "section",
+                "title": "In Python, a comparison between n-tuples is based on lexicographical order..This allows us, for example, to find, at the same time, the largest value in an array along with the corresponding index, taking the largest index in the case of equality.",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The most common element of an array can be found by using a dictionary to count the number of occurrences of each element, and then using the above technique to select the element with the largest count, or the first element in lexicographical order if there are several candidates with the maximal count."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Our implementation has a complexity of O(nk) on average, but O(n2k) in the worst case because of the use of a dictionary, where n is the number of words given and k is the maximal length of a word."
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

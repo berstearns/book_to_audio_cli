@@ -1,0 +1,737 @@
+[
+    {
+        "type": "chapter",
+        "sections": [
+            {
+                "type": "section",
+                "title": "Abstract",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Synthetic data generation is widely known to boost the accuracy of neural grammatical error correction (GEC) systems, but existing meth- ods often lack diversity or are too simplistic to generate the broad range of grammatical er- rors made by human writers."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In this work, we use error type tags from automatic annotation tools such as ERRANT to guide synthetic data generation."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We compare several models that can produce an ungrammatical sentence given a clean sentence and an error type tag."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We use these models to build a new, large syn- thetic pre-training data set with error tag fre- quency distributions matching a given devel- opment set."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Our synthetic data set yields large and consistent gains, improving the state-of- the-art on the BEA-19 and CoNLL-14 test sets."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We also show that our approach is particularly effective in adapting a GEC system, trained on mixed native and non-native English, to a na- tive English test set, even surpassing real train- ing data consisting of high-quality sentence pairs."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Introduction",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Grammatical error correction (GEC) systems aim to automatically correct grammatical and other types of writing errors in text."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It is common to view this problem as a sequence-to-sequence task (i.e."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "ungrammatical sentence \u2192 grammatical sentence) and borrow models that were originally developed for neural machine translation (NMT) (Chollam- patt and Ng, 2018; Junczys-Dowmunt et al., 2018; Ge et al., 2018b)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Back-translation (Sennrich et al., 2016) is a synthetic data generation technique for NMT that employs a translation system trained in the reverse direction to synthesize source sentences from sentences in the target language, and is still one of the most effective strategies to use mono- lingual data in NMT training."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Similarly, synthetic training data generation for GEC has also beenwidely studied in the literature (Brockett et al., 2006; Foster and Andersen, 2009; Rozovskaya and Roth, 2010; Felice et al., 2014; Rei et al., 2017; Kasewa et al., 2018; Xie et al., 2018; Ge et al., 2018a,b; Kiyono et al., 2019; Lichtarge et al., 2019; Stahlberg and Byrne, 2019; Zhao et al., 2019; Xu et al., 2019; Grundkiewicz et al., 2019; Choe et al., 2019; Takahashi et al., 2020)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This work is inspired by previous efforts to use ideas from back-translation for GEC (Kasewa et al., 2018; Xie et al., 2018; Kiyono et al., 2019)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In contrast to prior work, we use error type tags such as SPELL (spelling error) or SVA (subject-verb agreement er- ror) to control the output of our corruption models and generate more realistic as well as diverse gram- matical errors."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Our tagged corruption models are trained to output the corrupted sentence given a clean sentence and an error tag, e.g."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": ":"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "\u201cNOUN:INFL There were a lot of sheep.\u201d \u2192 \u201cThere were a lot of sheeps.\u201d"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The tags mitigate the tendency of untagged cor- ruption models to produce simplistic corruptions since many error type tags require more complex rewrites."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In general, there is a one-to-many map- ping from a clean sentence to a noisy sentence."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Us- ing a regular corruption model, many of these syn- thetic errors tend to be simplistic,1 but adding tag information allows the model to generate specific patterns of errors that can be found in actual GEC corpora."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The benefit of covering a wide range of er- ror types when generating pseudo data for GEC has also been demonstrated by Takahashi et al."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "(2020); Wan et al."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "(2020)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Moreover, the tag distribution in the synthetic data can be made to match the dis- tribution of a specific target domain."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We use this distribution matching technique to adapt a GEC system to better correct errors by native speakers."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "As an alternative to adding the tag directly to the input sequence, we add inference-time constraints to the recently proposed Seq2Edits model (Stahlberg and Kumar, 2020) to force the generation of a particular tag."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We implement such constraints using Finite State Transducers (FSTs)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We then use these corruption models to generate synthetic training data that follows a desired tag distribution, for example the tag distribution on the development set."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Using our new synthetic pre- training sets2 we report state-of-the-art results on two popular GEC test sets (BEA-test: 74.9 F0.5, CoNLL-14: 68.3 F0.5)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In our experiments on GEC for native English, a model fine-tuned on syn- thetic data that follows a native English error-tag distribution can even surpass a model fine-tuned on high-quality, real (i.e."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "non-synthetic) data."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Tagged Corruption Models",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "At the core of our approach is a model that gener- ates an ungrammatical sentence from a clean sen- tence given an error tag t \u2208 T that describes the desired type of error."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "T is the set of 25 error type tags supported by the automatic annotation toolkit ERRANT (Felice et al., 2016; Bryant et al., 2017)."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "A straightforward way to train such a tagged corruption model is to annotate a parallel corpus with ERRANT, prepend the ERRANT tag to the clean sentence, and train a model such as a standard Transformer (Vaswani et al., 2017) to generate the ungrammaticalsentence.3 Thisideaissimilarto the multi-lingual NMT system of Johnson et al."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "(2017) that adds the target language ID tag to the source sentence."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Alternatively, the recently proposed Seq2Edits4 (Stahlberg and Kumar, 2020) model is able to di- rectly predict error tags along with the edits, anddoes not need to be provided error tags in the input sequence."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Instead, during beam search we con- strain the tag output tape of Seq2Edits with an FST that forces the generation of a certain tag."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Fig."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "1 illustrates three types of constraint FSTs with the example tag, SPELL."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "All FSTs require at least one occurrence of the SPELL tag."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "NOSIGMA (Fig."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "1a) is the most restrictive constraint as it only allows SPELL and SELF (used by Seq2Edits for unmodi- fied source spans)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "POSTSIGMA (Fig."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "1b) allows other tags after SPELL, but constrains the hypoth- esis to start with either SELF or SPELL to prevent beam search from committing to a corruption thais incompatible with SPELL.5 PREPOSTSIGMA (Fig."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "1c) allows other tags both before and after SPELL."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Table 1 lists example outputs of a tagged Seq2Edits corruption model for all 25 ERRANT tags and demonstrates the model\u2019s capability to generate a broad variety of realistic errors."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Synthetic Data Generation with Tagged Corruption Models",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "For a grammatical input sentence xn (n \u2208 [1, N ] where N is the training set size), we denote the corrupted sentence according to the tag t \u2208 T as yt,n."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Our goal is to assign a single tag t\u2217n to each training sentence such that the overall distribution follows a certain desired tag distribution P\u2217(t)"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We compare three different methods: Offline- Optimal, Offline-Probabilistic, and Online."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Offline-Optimal The Offline-Optimal method frames this task as a constrained optimization prob-under the constraint that the observed distribution\u2248of tags matches the desired distributionsatisfied."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Fig."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "2 illustrates that this is an instance of a well-studied problem called maximum weighted bipartite matching (Schrijver, 2003) and can be solved efficiently with a standard minimum-cost flow solver."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Offline-Probabilistic The intuition behind the Offline-Probabilistic method is to first draw a tag according to the desired tag distribution P \u2217 (t) and then sample sentences which are most likely to contain this tag, i.e."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "draw N sentences from the distribution P ((x, y)|t)."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "where we assume each sentence-pair has the same probability P (x, y) =1"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "where we assume that a) each sample has equal probability i.e."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "P(x) \u2248 P(x,y) = 1 , b) eachNtag is equally likely given the source sentence,P(t|x) = 1 , where |T| is the size of the tagvocabulary."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "P (y|t, x) is the probability assigned by the corruption model to the target sequence y given the source x and tag t."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Unlike the Offline-Optimal approach, this method does not guarantee that each sentence from the original training set will be included in the sam- ple."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, this may not matter in practice when drawing from a large pool of examples."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Online A major limitation that prevents the Offline-Optimal and Offline-Probabilistic methods from scaling up efficiently is that we need to run the corruption model for every combination of tag and source sentence (\u03a9(N |T |) runtime).6 The On- line method avoids this computational complexity by drawing the tag t\u2217n for each example from the desired tag distribution P\u2217(\u00b7), and then generating the target yn given the source xn and tag t\u2217n.Thus, it does not rely on the corruption model prob- abilities."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The Online method assigns tags on-the-fly to each sentence independently and hence runs in \u0398(N )."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Results",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "For comparability to related work, we report span- based ERRANT F0.5-scores on the development and test sets (BEA-dev and BEA-test) of the BEA- 2019 shared task (Bryant et al., 2019)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We use the M2 scorer (Dahlmeier and Ng, 2012) to compute F0.5-scores on the CoNLL-13 (Ng et al., 2013) and CoNLL-14 (Ng et al., 2013) sets, and the GLEU metric (Napoles et al., 2015) on JFLEG-dev and JFLEG-test (Napoles et al., 2017)."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Training SetupAll our grammar correction models are standard Seq2Seq (not Seq2Edits) Transformers (Vaswani et al., 2017) trained with Adafactor (Shazeer and Stern, 2018) using the Tensor2Tensor (Vaswaniet al., 2018) TensorFlow (Abadi et al., 2015) li- brary."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Our corruption models are either standard Transformers or Seq2Edits models (Stahlberg and Kumar, 2020).7 We use a Tensor2Tensor joint 32K subword vocabulary and the \u2018Big\u2019 hyper-parameter set for all our models."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For our tagged corruption models we extend the subword vocabulary by the 25 ERRANT error tags."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We use both existing and new data sets to train our models (Table 2)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "WikiEdits and RoundTripGerman are large but noisy pre-training sets described by Lichtarge et al."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "(2019)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In this work we introduce a new synthetic pre-training cor- pus \u2013 C4200M \u2013 that we generated by applying our corruption methods to 200M sentences sampled randomly from the Colossal Clean Crawled Cor- pus (Raffel et al., 2020, C4).8 Our final correction models are trained using the two stage fine-tuning recipe of Lichtarge et al."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "(2020): after pre-training we first fine-tune on Lang-8 (Mizumoto et al., 2011) and then on BEA+FCE which is the combination of the FCE corpus (Yannakoudakis et al., 2011) and the training split of the Cambridge English Write & Improve corpus used in the BEA-2019 shared task (Bryant et al., 2019)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Our corruption mod- els are trained using a similar setup but do not use C4200M in pre-training."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In our ablation experiments, however, we modify specific stages of this training pipeline to gain more insight into our methods."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Synthetic vs. Real Parallel Data"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In initial experiments (Tables 3 to 5) we explore how well our synthetic data generation methods can replace real parallel data."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The corruption models used in this section are fine-tuned on Lang-8 but not on BEA+FCE."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The seed correction model is pre- trained on WikiEdits and RoundTripGerman and fine-tuned on Lang-8."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We discard the source sen- tences in BEA+FCE, replace them with syntheticcorruptions of the target sentences, and fine-tune the seed correction model on this synthetic data, i.e."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "all models in Tables 3 to 5 are trained by fine- tuning the same seed model (Table 4a and 5a) on the same set of target sentences but different sets of source sentences."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Data generation without tags Fine-tuning the seed model on the real parallel data improves the F0.5-score on BEA-dev by 16.7 points (33.7 \u2192 50.4 in rows a and b of Table 4)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Our goal is to close the gap relative to the F0.5 of 50.4 using synthetic source sentences."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The corruption models in rows c and d of Table 4 do not use any error tags, which is similar to previous attempts to apply back-translation to GEC (Kasewa et al., 2018)."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Data generation with tags Table 3 reports re- sults from the tag-based corruption methods intro- duced in this work."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Seq2Edits (rows b-e) is more amenable to tag-based corruption than a standard full sequence Transformer model (row a) because tag prediction is a component of the Seq2Edits model."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Interestingly, the Offline-Optimal method tends to perform worse than Offline-Probabilistic and Online in the constrained Seq2Edits experi- ments (rows b-e)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We hypothesize that Offline- Optimal might generate duller and more systematic errors because the corruption model score is used to pair tags with sentences."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Increasing the diversityof synthetic errors by selecting non-optimal tag- sentence pairs ultimately improves the usefulness of the synthetic data."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Comparing Table 4 with Table 3 we observe that controlling the tag distribution of the synthetic data from a Seq2Edits model outperforms traditional back-translation without tags."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Our best model (On- line column in Table 3c) achieves an F0.5-score of 48.0 which is much better than our best system without tags (42.4 F0.5 in Table 4c) and remark- ably close to the oracle score of 50.4 F0.5 (Table 4b) obtained using a model trained on real parallel data."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "For all experiments in the remainder of this pa- per we used the unconstrained tagged Seq2Edits corruption models (Table 3e) because it yields rea- sonable gains across all methods (Offline-Optimal, Offline-Probabilistic, and Online) and is easiest and most practical to run on a large scale.10 Further- more, we will only use the Online method to avoid the computational overhead of Offline-Optimal and Offline-Probabilistic."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Adapting GEC to English proficiency levels A potential use case for tagged corruption models is to adapt a GEC model to the proficiency level of the user by changing the target tag distribution P \u2217 (t) of the synthetic fine-tuning set."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Each sen- tence in the BEA-dev development set is annotated with English proficiency labels (CEFR-levels A, B, C, and \u2018N\u2019 for native English)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We split BEA-dev using these labels, and then split each set again into two parts (development/test), resulting in eight disjoint subsets A1, A2, B1, B2, C1, C2, N1, N2 with about 500 sentences each."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We use A1, B1, C1, and N1 to estimate proficiency-dependent target tag distributions."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "As before we fine-tune the seed model on the BEA-train target sentences with syn- thetic source sentences that follow one of these tag distributions, but evaluate the fine-tuned models on the A2, B2, C2, and N2 splits."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Table 5 shows that the tag distributions from A1, B1, and C1 yield similar performance (rows c-e in Table 5) across most test sets."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This suggests that our method is not effective at discriminating between the different CEFR-levels of non-native English."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, us- ing the tag distribution from native speakers (N1 in Table 5f) does yield substantial gains on the native English test set (42.9 F0.5 on N2), even surpassingthe real parallel data (42.1 F0.5 Table 5b)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This demonstrates the potential of tag-based corruption for improving GEC of native English."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Fig."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "3 shows that the error tag distribution for native English differs significantly from the non- native distributions."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Native speakers (orange bar) tend to make more punctuation (PUNCT), and spel- lling (SPELL) mistakes whereas the determiner errors (DET) are more common in non-native text."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The C4200M Synthetic Data Set"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We showed in the previous section that using an unconstrained tagged Seq2Edits corruption model that follows the BEA-dev tag distribution works well in a controlled setup (corrupting \u223c60K clean target sentences from BEA+FCE)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We now apply the same corruption model to a much larger, clean data set (C4200M) consisting of 200M sentences and use the resulting synthetic data set as an addi- tional pre-training set for our GEC models."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Fig."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "4 reports performance from three different GEC mod- els with different pre-training sets, each using the 2-stage fine-tuning pipeline described in Sec."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "4.1."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The RoundTripGerman+WikiEdits model resem- bles the baseline of Lichtarge et al."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "(2020)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Using C4200M instead of RoundTripGerman+WikiEditsimproves the final F0.5-score to 52.1."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Combining all three pre-training sets leads to a large jump in F0.5 to 32.4 after pre-training."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The gains are re- duced after fine-tuning, but our best model still uses all three pre-training sets (52.9 F0.5 after the second fine-tuning stage)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The gains in Fig."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "4 from using C4200M can be attributed to a) the tagged corruption method, or b) the use of C4 rather than Wikipedia which covers a broader range of text types."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In the ablation experiment in Table 7, rather than using C4200M, we corrupted the WikiRevision target sen- tences with various corruption methods."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Tagged corruption (row c) outperforms both untagged cor- ruption (row a) and round-trip translation (row b) when the target sentences are kept constant."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "A crucial practical question is whether our ap- proach is sensitive to the particular target tag distri- bution P \u2217 (t), and if the synthetic C4200M training data can help generalization to other development sets."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Rows b-e in Table 6 show the performance after fine-tuning for four different tag distributions: BEA-dev, CoNLL-13, JFLEG-dev, and Uniform."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Each row reports the performance of a model pre- trained using RoundTripGerman+WikiEdits and C4200M corrupted using the desired tag distributionfollowed by the 2-stage fine-tuning, i.e."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "row b cor- responds to row 3 in Fig."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "4."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "All tagged corruption models improve upon the untagged models (rows a and f).11 In contrast to our adaptation experi- ments in Table 5, the variations between different tag distributions are small."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This indicates that even though choosing the correct tag distribution is cru- cial for adapting GEC to native English, at the pre-training stage the ability of tagged corruption models to generate diverse errors is more important than matching a particular distribution."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Previous work on back-translation has found that it can be beneficial to use sampling instead of beam search for synthetic data generation (Edunov et al., 2018; Kiyono et al., 2019)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We confirm these find- ings for our tagged corruption models: Sampling (Table 6g-j) outperforms beam search (Table 6b-e) for all tag distributions except CoNLL-13."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Using sampling and the BEA-dev tag distribution (Table 6g) yields good performance across all develop- ment sets."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The BEA-dev tag distribution reflects a wide range of grammatical errors across various proficiency levels compared to other corpora such as CoNLL-14 (mostly beginner) or FCE (School) (Bryant et al., 2019)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Table 8 situates this single model and an ensemble of five analogously trained models in the context of related work."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For our final models in Table 8 we follow Lichtarge et al."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "(2019, 2020); Stahlberg and Kumar (2020) and multiply the model score of the identity mapping with a fac- tor (tuned on the development set) to balance pre- cision and recall.12 Our single model outperforms other single models on CoNLL-14 and JFLEG-test."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Our ensemble establishes new state-of-the- art scores on BEA-test (74.9 F0.5) and CoNLL-14 (68.3 F0.5)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We would like to emphasize that these gains are achieved without modifying the GEC model architecture \u2013 our GEC models are vanilla Transformers that were pre-trained using our new synthetic C4200M data set."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We will make our data set publicly available to make it easy for other re- searchers to benefit from our work."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Appendix C contains example outputs from our system trained with C4200M that demonstrate improved fluency and better handling of long-range reorderings."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Related Work",
+                "paragraphs": []
+            }
+        ]
+    }
+]
