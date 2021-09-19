@@ -4,9 +4,8 @@ import os
 import sys
 import time
 import keyboard
-import multiprocessing
+import threading
 import sys, select
-multiprocessing.set_start_method('spawn')
 def speaking_proc(sentence):
     engine = pyttsx3.init()
     engine.say(sentence)
@@ -22,6 +21,9 @@ def startSpeaking(sentence):
                     continue
     p.join()
 
+def stop_voice(params):
+      params["engine"].stop()
+
 def read_curr(params):
     '''
     expected params :
@@ -29,7 +31,11 @@ def read_curr(params):
      "sentence": '' # string
     }
     '''
-    engine = pyttsx3.init()
+    engine = params["engine"]
+    try:
+        engine.endLoop()
+    except:
+        pass
     engine.say(params["sentence"])
     engine.runAndWait()
 
@@ -66,12 +72,17 @@ def get_params(user_input, state):
     current_section = state["current_section"]
     current_paragraph = state["current_paragraph"]
     current_sentence = state["current_sentence"]
+    if user_input == "s": # stop
+        params = {
+                "engine": state["engine"]
+        }
     if user_input == "r": # read
         current_sentence = book[current_chapter]["sections"][current_section]\
                                                 ["paragraphs"][current_paragraph]\
                                                 ["sentences"][current_sentence]["text"]
         params = {
-                "sentence": current_sentence
+                "sentence": current_sentence,
+                "engine": state["engine"]
         }
     if user_input == "ns": # next sentence
         if (state["current_sentence"] + 1) < len(book[current_chapter]["sections"][current_section]\
@@ -119,6 +130,7 @@ def init_app(state):
     state["book"] = load_book(book_filepath)
     while True:
         time.sleep(0.1)
+        print([thread.name for thread in threading.enumerate()]);
         curr_lastChanged_epoctime = os.path.getmtime(book_filepath)
         if curr_lastChanged_epoctime > prev_lastChanged_epoctime:
             state["book"] = load_book(book_filepath)
@@ -126,8 +138,9 @@ def init_app(state):
         if given_user_input and commands.get(given_user_input,False):
           print(f"given : {given_user_input}")
           state, params = get_params(given_user_input, state)
-          commands[given_user_input](params) 
 
+          thread_ = threading.Thread(target=commands[given_user_input],kwargs={'params':params})
+          thread_.start()
 if __name__ == "__main__":
     book_name = sys.argv[1]
     actions_queue = []
@@ -137,9 +150,11 @@ if __name__ == "__main__":
             "ns": next_sentence,
             "ps": previous_sentence,
             "np": next_paragraph,
-            "nc": next_section
+            "nc": next_section,
+            "s": stop_voice,
             }
     state = {
+            "engine": pyttsx3.init(),
             "book_name": book_name,
             "actions_queue": actions_queue,
             "user_inputs": user_inputs,
