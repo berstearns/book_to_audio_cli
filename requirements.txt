@@ -1,0 +1,4 @@
+nltk
+pyperclip
+keyboard
+pyttsx3

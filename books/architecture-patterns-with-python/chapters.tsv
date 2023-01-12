@@ -1,0 +1,22 @@
+#I. Building an Architecture to Support Domain Modeling
+01 Domain Modeling
+02 Repository Pattern
+03 A Brief Interlude On Coupling and Abstractions
+04 Our First Use Case Flask API and Service Layer
+05 TDD in High Gear and Low Gear
+06 Unit of Work Pattern
+07 Aggregates and Consistency Boundaries
+#II. Event-Driven Architecture
+08 Events and the Message Bus
+09 Going to Town on the Message Bus
+10 Commands and Command Handler
+11 Event-Driven Architecture Using Events to Integrate Microservices
+12 Command-Query Responsibility Segregation (CQRS)
+13 Dependency Injection (and Bootstrapping)
+#Epilogue
+#A. Summary Diagram and Table
+#B. A Template Project Structure
+#C. Swapping Out the Infrastructure: Do Everything with CSVs
+#D. Repository and Unit of Work Patterns with Django
+#E. Validation
+#Index

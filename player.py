@@ -56,7 +56,7 @@ def read_curr(params):
     global state
     wpm = 250
     process = subprocess.Popen(["say","-r",str(wpm), f"{params['sentence']}"])
-    expected_seconds = (1.25)*60*len(params['sentence'].split(" "))/wpm  
+    expected_seconds = (2)*60*len(params['sentence'].split(" "))/wpm  
     state['actions_queue'].append({
                         "process": process,
                         "group_id": params["group_id"],
@@ -203,7 +203,7 @@ def get_params(user_input, state):
 
 def init_app():
     global state
-    book_filepath = f"./books/{state['book_name']}"
+    book_filepath = f"./{state['book_name']}"
     prev_lastChanged_epoctime = os.path.getmtime(book_filepath)
     state["book"] = load_book(book_filepath)
     while True:

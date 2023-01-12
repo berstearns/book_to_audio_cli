@@ -1,0 +1,848 @@
+[
+    {
+        "type": "chapter",
+        "sections": [
+            {
+                "type": "section",
+                "title": "DomainModeling",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "This chapter looks into how we can model business processes withcode, in a way that\u2019s highly compatible with TDD."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We\u2019ll discusswhy domain modeling matters, and we\u2019ll look at a few key patternsfor modeling domains: Entity, Value Object, and Domain Service."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Figure 1-1 is a simple visual placeholder for our Domain Modelpattern."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We\u2019ll fill in some details in this chapter, and as we moveon to other chapters, we\u2019ll build things around the domain model,but you should always be able to find these little shapes at thecore."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "What Is a Domain Model?",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In the introduction, we used the term business logic layer todescribe the central layer of a three-layered architecture."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For therest of the book, we\u2019re going to use the term domain modelinstead."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This is a term from the DDD community that does a betterjob of capturing our intended meaning (see the next sidebar formore on DDD)."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The domain is a fancy way of saying the problem you\u2019re trying tosolve."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Your authors currently work for an online retailer offurniture."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Depending on which system you\u2019re talking about, thedomain might be purchasing and procurement, or product design,or logistics and delivery."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Most programmers spend their daystrying to improve or automate business processes; the domain isthe set of activities that those processes support."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "A model is a map of a process or phenomenon that captures auseful property."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Humans are exceptionally good at producingmodels of things in their heads."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For example, when someonethrows a ball toward you, you\u2019re able to predict its movementalmost unconsciously, because you have a model of the wayobjects move in space."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Your model isn\u2019t perfect by any means.Humans have terrible intuitions about how objects behave at nearlight speeds or in a vacuum because our model was never designedto cover those cases."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "That doesn\u2019t mean the model is wrong, but itdoes mean that some predictions fall outside of its domain."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The domain model is the mental map that business owners have oftheir businesses."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "All business people have these mental maps\u2014they\u2019re how humans think about complex processes.You can tell when they\u2019re navigating these maps because they usebusiness speak."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Jargon arises naturally among people who arecollaborating on complex systems."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Imagine that you, our unfortunate reader, were suddenlytransported light years away from Earth aboard an alien spaceshipwith your friends and family and had to figure out, from firstprinciples, how to navigate home."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In your first few days, you might just push buttons randomly, butsoon you\u2019d learn which buttons did what, so that you could giveone another instructions."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "\u201cPress the red button near the flashingdoohickey and then throw that big lever over by the radar gizmo,\u201dyou might say."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Within a couple of weeks, you\u2019d become more precise as youadopted words to describe the ship\u2019s functions: \u201cIncrease oxygenlevels in cargo bay three\u201d or \u201cturn on the little thrusters.\u201d After afew months, you\u2019d have adopted language for entire complexprocesses: \u201cStart landing sequence\u201d or \u201cprepare for warp.\u201d Thisprocess would happen quite naturally, without any formal effort tobuild a shared glossary."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "So it is in the mundane world of business."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The terminology usedby business stakeholders represents a distilled understanding of thedomain model, where complex ideas and processes are boileddown to a single word or phrase."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "When we hear our business stakeholders using unfamiliar words,or using terms in a specific way, we should listen to understand thedeeper meaning and encode their hard-won experience into oursoftware."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We\u2019re going to use a real-world domain model throughout thisbook, specifically a model from our current employment.MADE.com is a successful furniture retailer."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We source ourfurniture from manufacturers all over the world and sell it acrossEurope."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "When you buy a sofa or a coffee table, we have to figure out howbest to get your goods from Poland or China or Vietnam and intoyour living room."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "At a high level, we have separate systems that are responsible forbuying stock, selling stock to customers, and shipping goods tocustomers."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "A system in the middle needs to coordinate the processby allocating stock to a customer\u2019s orders; see Figure 1-2."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "For the purposes of this book, we\u2019re imagining that the businessdecides to implement an exciting new way of allocating stock.Until now, the business has been presenting stock and lead timesbased on what is physically available in the warehouse."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "If andwhen the warehouse runs out, a product is listed as \u201cout of stock\u201duntil the next shipment arrives from the manufacturer."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Here\u2019s the innovation: if we have a system that can keep track ofall our shipments and when they\u2019re due to arrive, we can treat thegoods on those ships as real stock and part of our inventory, justwith slightly longer lead times."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Fewer goods will appear to be outof stock, we\u2019ll sell more, and the business can save money bykeeping lower inventory in the domestic warehouse."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "But allocating orders is no longer a trivial matter of decrementinga single quantity in the warehouse system."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We need a morecomplex allocation mechanism."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Time for some domain modeling."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Exploring the Domain Language",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Understanding the domain model takes time, and patience, andPost-it notes."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We have an initial conversation with our businessexperts and agree on a glossary and some rules for the firstminimal version of the domain model."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Wherever possible, we askfor concrete examples to illustrate each rule"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We make sure to express those rules in the business jargon (theubiquitous language in DDD terminology)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We choose memorableidentifiers for our objects so that the examples are easier to talkabout."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Some Notes on Allocation\u201d shows some notes we might havetaken while having a conversation with our domain experts aboutallocation."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Unit Testing Domain Models",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We\u2019re not going to show you how TDD works in this book, but wewant to show you how we would construct a model from thisbusiness conversation."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Here\u2019s what one of our first tests might look like:A first test for allocation (test_batches.py)"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The name of our unit test describes the behavior that we want tosee from the system, and the names of the classes and variablesthat we use are taken from the business jargon."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We could show thiscode to our nontechnical coworkers, and they would agree that thiscorrectly describes the behavior of the system."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "And here is a domain model that meets our requirements:First cut of a domain model for batches (model.py)"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "OrderLine is an immutable dataclass with no behavior.We\u2019re not showing imports in most code listings, in an attemptto keep them clean."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We\u2019re hoping you can guess that this camevia from dataclasses import dataclass; likewise,typing.Optional and datetime.date."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "If you want todouble-check anything, you can see the full working code foreach chapter in its branch (e.g., chapter_01_domain_model).Type hints are still a matter of controversy in the Python world.For domain models, they can sometimes help to clarify ordocument what the expected arguments are, and people withIDEs are often grateful for them."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "You may decide the pricepaid in terms of readability is too high.Our implementation here is trivial: a Batch just wraps an integeravailable_quantity, and we decrement that value on allocation.We\u2019ve written quite a lot of code just to subtract one number fromanother, but we think that modeling our domain precisely will payoff.Let\u2019s write some new failing tests:Testing logic for what we can allocate (test_batches.py)def make_batch_and_line(sku, batch_qty, line_qty):return (Batch(\"batch-001\", sku, batch_qty, eta=date.today()),OrderLine(\"order-123\", sku, line_qty)2"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We\u2019re not showing imports in most code listings, in an attemptto keep them clean."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We\u2019re hoping you can guess that this camevia from dataclasses import dataclass; likewise,typing.Optional and datetime.date."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "If you want todouble-check anything, you can see the full working code foreach chapter in its branch (e.g., chapter_01_domain_model)."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Type hints are still a matter of controversy in the Python world.For domain models, they can sometimes help to clarify ordocument what the expected arguments are, and people withIDEs are often grateful for them."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "You may decide the pricepaid in terms of readability is too high."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Our implementation here is trivial: a Batch just wraps an integeravailable_quantity, and we decrement that value on allocation.We\u2019ve written quite a lot of code just to subtract one number fromanother, but we think that modeling our domain precisely will payoff"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Let\u2019s write some new failing tests:Testing logic for what we can allocate (test_batches.py)"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "There\u2019s nothing too unexpected here."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We\u2019ve refactored our testsuite so that we don\u2019t keep repeating the same lines of code tocreate a batch and a line for the same SKU; and we\u2019ve written foursimple tests for a new method can_allocate."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Again, notice thatthe names we use mirror the language of our domain experts, andthe examples we agreed upon are directly written into code."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We can implement this straightforwardly, too, by writing thecan_allocate method of Batch:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "A new method in the model (model.py)"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "So far, we can manage the implementation by just incrementingand decrementing Batch.available_quantity, but as we getinto deallocate() tests, we\u2019ll be forced into a more intelligentsolution:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "This test is going to require a smarter model (test_batches.py)"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In this test, we\u2019re asserting that deallocating a line from a batchhas no effect unless the batch previously allocated the line."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For thisto work, our Batch needs to understand which lines have beenallocated."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Let\u2019s look at the implementation:The domain model now tracks allocations (model.py)"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Now we\u2019re getting somewhere!"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "A batch now keeps track of a setof allocated OrderLine objects."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "When we allocate, if we haveenough available quantity, we just add to the set."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Ouravailable_quantity is now a calculated property: purchasedquantity minus allocated quantity."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Yes, there\u2019s plenty more we could do."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It\u2019s a little disconcerting thatboth allocate() and deallocate() can fail silently, but we havethe basics."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Incidentally, using a set for ._allocations makes it simple for usto handle the last test, because items in a set are unique:Last batch test!"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "(test_batches.py)"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "At the moment, it\u2019s probably a valid criticism to say that thedomain model is too trivial to bother with DDD (or even objectorientation!)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In real life, any number of business rules and edgecases crop up: customers can ask for delivery on specific futuredates, which means we might not want to allocate them to theearliest batch."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Some SKUs aren\u2019t in batches, but ordered ondemand directly from suppliers, so they have different logic.Depending on the customer\u2019s location, we can allocate to only asubset of warehouses and shipments that are in their region\u2014except for some SKUs we\u2019re happy to deliver from a warehouse ina different region if we\u2019re out of stock in the home region."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "And soon."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "A real business in the real world knows how to pile oncomplexity faster than we can show on the page!"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "But taking this simple domain model as a placeholder forsomething more complex, we\u2019re going to extend our simpledomain model in the rest of the book and plug it into the real worldof APIs and databases and spreadsheets."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We\u2019ll see how stickingrigidly to our principles of encapsulation and careful layering willhelp us to avoid a ball of mud."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Dataclasses Are Great for Value Objects",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We\u2019ve used line liberally in the previous code listings, but what isa line?"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In our business language, an order has multiple line items,where each line has a SKU and a quantity."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We can imagine that asimple YAML file containing order information might look likethis:Order info as YAML"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Notice that while an order has a reference that uniquely identifiesit, a line does not."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "(Even if we add the order reference to theOrderLine class, it\u2019s not something that uniquely identifies theline itself.)"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Whenever we have a business concept that has data but no identity,we often choose to represent it using the Value Object pattern."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Avalue object is any domain object that is uniquely identified by thedata it holds; we usually make them immutable:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "OrderLine is a value object"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "One of the nice things that dataclasses (or namedtuples) give us isvalue equality, which is the fancy way of saying, \u201cTwo lines withthe same orderid, sku, and qty are equal.\u201dMore examples of value objects"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "These value objects match our real-world intuition about how theirvalues work."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It doesn\u2019t matter which \u00a310 note we\u2019re talking about,because they all have the same value."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Likewise, two names areequal if both the first and last names match; and two lines areequivalent if they have the same customer order, product code, andquantity."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We can still have complex behavior on a value object,though."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In fact, it\u2019s common to support operations on values; forexample, mathematical operators:Math with value objects"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Value Objects and Entities"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "An order line is uniquely identified by its order ID, SKU, andquantity; if we change one of those values, we now have a newline..That\u2019s the definition of a value object: any object that isidentified only by its data and doesn\u2019t have a long-lived identity.What about a batch, though?.That is identified by a reference.",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We use the term entity to describe a domain object that has longlived identity."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "On the previous page, we introduced a Name class asa value object."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "If we take the name Harry Percival and change oneletter, we have the new Name object Barry Percival."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "It should be clear that Harry Percival is not equal to BarryPercival:A name itself cannot change\u2026"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "But what about Harry as a person?"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "People do change their names,and their marital status, and even their gender, but we continue torecognize them as the same individual."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "That\u2019s because humans,unlike names, have a persistent identity:But a person can!"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Entities, unlike values, have identity equality."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We can change theirvalues, and they are still recognizably the same thing."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Batches, inour example, are entities."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We can allocate lines to a batch, orchange the date that we expect it to arrive, and it will still be thesame entity.We usually make this explicit in code by implementing equalityoperators on entities:Implementing equality operators (model.py)"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Python\u2019s __eq__ magic method defines the behavior of the classfor the == operator.For both entity and value objects, it\u2019s also worth thinking throughhow __hash__ will work."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It\u2019s the magic method Python uses tocontrol the behavior of objects when you add them to sets or usethem as dict keys; you can find more info in the Python docs.For value objects, the hash should be based on all the valueattributes, and we should ensure that the objects are immutable.We get this for free by specifying @frozen=True on the dataclass.5"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "For entities, the simplest option is to say that the hash is None,meaning that the object is not hashable and cannot, for example,be used in a set."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "If for some reason you decide you really do wantto use set or dict operations with entities, the hash should be basedon the attribute(s), such as .reference, that defines the entity\u2019sunique identity over time."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "You should also try to somehow makethat attribute read-only."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Not Everything Has to Be an Object: ADomain Service Function"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "We\u2019ve made a model to represent batches, but what we actuallyneed to do is allocate order lines against a specific set of batchesthat represent all our stock.",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Evans discusses the idea of Domain Service operations that don\u2019thave a natural home in an entity or value object."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "A thing thatallocates an order line, given a set of batches, sounds a lot like afunction, and we can take advantage of the fact that Python is amultiparadigm language and just make it a function."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Let\u2019s see how we might test-drive such a function:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Python\u2019s Magic Methods Let Us Use Our Modelswith Idiomatic Python"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "You may or may not like the use of next() in the preceding code,but we\u2019re pretty sure you\u2019ll agree that being able to use sorted()on our list of batches is nice, idiomatic Python.To make it work, we implement __gt__ on our domain model:Magic methods can express domain semantics (model.py)",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Exceptions Can Express Domain Concepts Too"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "We have one final concept to cover: exceptions can be used toexpress domain concepts too..In our conversations with domainexperts, we\u2019ve learned about the possibility that an order cannot beallocated because we are out of stock, and we can capture that byusing a domain exception:",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We won\u2019t bore you too much with the implementation, but themain thing to note is that we take care in naming our exceptions inthe ubiquitous language, just as we do our entities, value objects,and services:"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

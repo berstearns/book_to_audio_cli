@@ -1,0 +1,106 @@
+[
+    {
+        "type": "chapter",
+        "sections": [
+            {
+                "type": "section",
+                "title": "Chapter 2..Repository Pattern",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "It\u2019s time to make good on our promise to use the dependency inversion principle as a way of decoupling our core logic from infrastructural concerns."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We\u2019ll introduce the Repository pattern, a simplifying abstraction over data storage, allowing us to decouple our model layer from the data layer."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We\u2019ll present a concrete example of how this simplifying abstraction makes our system more testable by hiding the complexities of the database."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Figure 2-1 shows a little preview of what we\u2019re going to build: a Repository object that sits between our domain model and the database."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Persisting Our Domain Model",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In Chapter 1 we built a simple domain model that can allocate orders to batches of stock."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It\u2019s easy for us to write tests against this code because there aren\u2019t any dependencies or infrastructure to set up."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "If we needed to run a database or an API and create test data, our tests would be harder to write and maintain."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Sadly, at some point we\u2019ll need to put our perfect little model in the hands of users and contend with the real world of spreadsheets and web browsers and race conditions."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For the next few chapters we\u2019re going to look at how we can connect our idealized domain model to external state."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We expect to be working in an agile manner, so our priority is to get to a minimum viable product as quickly as possible."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In our case, that\u2019s going to be a web API."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In a real project, you might dive straight in with some end-to-end tests and start plugging in a web framework, test-driving things outside-in."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "But we know that, no matter what, we\u2019re going to need some form of persistent storage, and this is a textbook, so we can allowourselves a tiny bit more bottom-up development and start to think about storage and databases."
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

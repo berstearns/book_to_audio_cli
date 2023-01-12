@@ -1,0 +1,36 @@
+#Part 1—Introduction
+01 Introduction to APIs
+02 Introduction to API design patterns
+#Part 2—Design principles
+03 Naming
+04 Resource scope and hierarchy
+05 Data types and defaults
+#Part 3—Fundamentals
+06 Resource identification
+07 Standard methods
+08 Partial updates and retrievals
+09 Custom methods
+10 Long-running operations
+11 Rerunnable jobs
+#Part 4—Resource relationships
+12 Singleton sub-resources
+13 Cross references
+14 Association resources
+15 Add and remove custom methods
+16 Polymorphism
+#Part 5—Collective operations
+17 Copy and move
+18 Batch operations
+19 Criteria-based deletion
+20 Anonymous writes
+21 Pagination
+22 Filtering
+23 Importing and exporting
+#Part 6—Safety and security
+24 Versioning and compatibility
+25 Soft deletion
+26 Request deduplication
+27 Request validation
+28 Resource revisions
+29 Request retrial
+30 Request authentication

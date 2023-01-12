@@ -1,0 +1,850 @@
+[
+    {
+        "type": "chapter",
+        "sections": [
+            {
+                "type": "section",
+                "title": "Architectural Thinking",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "An architect sees things differently from a developer\u2019s point of view, much in thesame way a meteorologist might see clouds differently from an artist\u2019s point of view.This is called architectural thinking."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Unfortunately, too many architects believe thatarchitectural thinking is simply just \u201cthinking about the architecture.\u201d"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Architectural thinking is much more than that."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It is seeing things with an architec\u2010tural eye, or an architectural point of view."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "There are four main aspects of thinkinglike an architect."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "First, it\u2019s understanding the difference between architecture anddesign and knowing how to collaborate with development teams to make architecturework."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Second, it\u2019s about having a wide breadth of technical knowledge while stillmaintaining a certain level of technical depth, allowing the architect to see solutionsand possibilities that others do not see."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Third, it\u2019s about understanding, analyzing,and reconciling trade-offs between various solutions and technologies."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Finally, it\u2019sabout understanding the importance of business drivers and how they translate toarchitectural concerns."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In this chapter we explore these four aspects of thinking like an architect and seeingthings with an architectural eye."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Architecture Versus Design",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The difference between architecture and design is often a confusing one."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Where doesarchitecture end and design begin?"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "What responsibilities does an architect have ver\u2010sus those of a developer?"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Thinking like an architect is knowing the differencebetween architecture and design and seeing how the two integrate closely to form sol\u2010utions to business and technical problems."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Consider Figure 2-1, which illustrates the traditional responsibilities an architect has,as compared to those of a developer."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "As shown in the diagram, an architect is respon\u2010sible for things like analyzing business requirements to extract and define the archi\u2010tectural characteristics (\u201c-ilities\u201d), selecting which architecture patterns and styleswould fit the problem domain, and creating components (the building blocks of thesystem)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The artifacts created from these activities are then handed off to the develop\u2010ment team, which is responsible for creating class diagrams for each component, cre\u2010ating user interface screens, and developing and testing source code."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "There are several issues with the traditional responsibility model illustrated inFigure 2-1."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "As a matter of fact, this illustration shows exactly why architecture rarelyworks."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Specifically, it is the unidirectional arrow passing though the virtual and phys\u2010ical barriers separating the architect from the developer that causes all of the prob\u2010lems associated with architecture."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Decisions an architect makes sometimes nevermake it to the development teams, and decisions development teams make thatchange the architecture rarely get back to the architect."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In this model the architect isdisconnected from the development teams, and as such the architecture rarely pro\u2010vides what it was originally set out to do."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "To make architecture work, both the physical and virtual barriers that exist betweenarchitects and developers must be broken down, thus forming a strong bidirectionalrelationship between architects and development teams."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The architect and developermust be on the same virtual team to make this work, as depicted in Figure 2-2."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Notonly does this model facilitate strong bidirectional communication between architec\u2010ture and development, but it also allows the architect to provide mentoring andcoaching to developers on the team."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Unlike the old-school waterfall approaches to static and rigid software architecture,the architecture of today\u2019s systems changes and evolves every iteration or phase of aproject."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "A tight collaboration between the architect and the development team isessential for the success of any software project."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "So where does architecture end anddesign begin?"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It doesn\u2019t."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "They are both part of the circle of life within a softwareproject and must always be kept in synchronization with each other in order tosucceed."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Technical Breadt",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The scope of technological detail differs between developers and architects."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Unlike adeveloper, who must have a significant amount of technical depth to perform theirjob, a software architect must have a significant amount of technical breadth to thinklike an architect and see things with an architecture point of view."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This is illustratedby the knowledge pyramid shown in Figure 2-3, which encapsulates all the technicalknowledge in the world."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It turns out that the kind of information a technologistshould value differs with career stages."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Stuff you know includes the technologies, frameworks, languages, and tools a technol\u2010ogist uses on a daily basis to perform their job, such as knowing Java as a Java pro\u2010grammer."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Stuff you know you don\u2019t know includes those things a technologist knows alittle about or has heard of but has little or no expertise in."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "A good example of thislevel of knowledge is the Clojure programming language."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Most technologists haveheard of Clojure and know it\u2019s a programming language based on Lisp, but they can\u2019tcode in the language."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Stuff you don\u2019t know you don\u2019t know is the largest part of theknowledge triangle and includes the entire host of technologies, tools, frameworks,and languages that would be the perfect solution to a problem a technologist is tryingto solve, but the technologist doesn\u2019t even know those things exist."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "A developer\u2019s early career focuses on expanding the top of the pyramid, to buildexperience and expertise."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This is the ideal focus early on, because developers needmore perspective, working knowledge, and hands-on experience."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Expanding the topincidentally expands the middle section; as developers encounter more technologiesand related artifacts, it adds to their stock of stuff you know you don\u2019t know."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In Figure 2-4, expanding the top of the pyramid is beneficial because expertise is val\u2010ued."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, the stuff you know is also the stuff you must maintain\u2014nothing is staticin the software world."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "If a developer becomes an expert in Ruby on Rails, that exper\u2010tise won\u2019t last if they ignore Ruby on Rails for a year or two."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The things at the top ofthe pyramid require time investment to maintain expertise."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Ultimately, the size of thetop of an individual\u2019s pyramid is their technical depth."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "However, the nature of knowledge changes as developers transition into the architectrole."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "A large part of the value of an architect is a broad understanding of technologyand how to use it to solve particular problems."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For example, as an architect, it is morebeneficial to know that five solutions exist for a particular problem than to have sin\u2010gular expertise in only one."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The most important parts of the pyramid for architectsare the top and middle sections; how far the middle section penetrates into the bot\u2010tom section represents an architect\u2019s technical breadth, as shown in Figure 2-5."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "As an architect, breadth is more important than depth."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Because architects must makedecisions that match capabilities to technical constraints, a broad understanding of awide variety of solutions is valuable."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Thus, for an architect, the wise course of actionis to sacrifice some hard-won expertise and use that time to broaden their portfolio,as shown in Figure 2-6."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "As illustrated in the diagram, some areas of expertise willremain, probably in particularly enjoyable technology areas, while others usefullyatrophy."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Our knowledge pyramid illustrates how fundamentally different the role of architectcompares to developer."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Developers spend their whole careers honing expertise, andtransitioning to the architect role means a shift in that perspective, which many indi\u2010viduals find difficult."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This in turn leads to two common dysfunctions: first, an archi\u2010tect tries to maintain expertise in a wide variety of areas, succeeding in none of themand working themselves ragged in the process."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Second, it manifests as stale expertise\u2014the mistaken sensation that your outdated information is still cutting edge."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We seethis often in large companies where the developers who founded the company havemoved into leadership roles yet still make technology decisions using ancient criteria(see \u201cFrozen Caveman Anti-Pattern\u201d on page 30)."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Architects should focus on technical breadth so that they have a larger quiver fromwhich to draw arrows."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Developers transitioning to the architect role may have tochange the way they view knowledge acquisition."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Balancing their portfolio of knowl\u2010edge regarding depth versus breadth is something every developer should considerthroughout their career."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Analyzing Trade-Offs",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Thinking like an architect is all about seeing trade-offs in every solution, technical orotherwise, and analyzing those trade-offs to determine what is the best solution."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Toquote Mark (one of your authors):Architecture is the stuff you can\u2019t Google."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Everything in architecture is a trade-off, which is why the famous answer to everyarchitecture question in the universe is \u201cit depends.\u201d While many people get increas\u2010ingly annoyed at this answer, it is unfortunately true."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "You cannot Google the answerto whether REST or messaging would be better, or whether microservices is the rightarchitecture style, because it does depend."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It depends on the deployment environ\u2010ment, business drivers, company culture, budgets, timeframes, developer skill set, anddozens of other factors."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Everyone\u2019s environment, situation, and problem is different,hence why architecture is so hard."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "To quote Neal (another one of your authors):There are no right or wrong answers in architecture\u2014only trade-offs."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "For example, consider an item auction system, as illustrated in Figure 2-7, wheresomeone places a bid for an item up for auction"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The Bid Producer service generates a bid from the bidder and then sends that bidamount to the Bid Capture, Bid Tracking, and Bid Analytics services."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This couldbe done by using queues in a point-to-point messaging fashion or by using a topic ina publish-and-subscribe messaging fashion."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Which one should the architect use?"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Youcan\u2019t Google the answer."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Architectural thinking requires the architect to analyze thetrade-offs associated with each option and select the best one given the specificsituation."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The two messaging options for the item auction system are shown in Figures 2-8 and2-9, with Figure 2-8 illustrating the use of a topic in a publish-and-subscribe messag\u2010ing model, and Figure 2-9 illustrating the use of queues in a point-to-point messagingmodel."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The clear advantage (and seemingly obvious solution) to this problem in Figure 2-8 isthat of architectural extensibility."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The Bid Producer service only requires a singleconnection to a topic, unlike the queue solution in Figure 2-9 where the Bid Producer needs to connect to three different queues."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "If a new service called Bid Historywere to be added to this system due to the requirement to provide each bidder with ahistory of all the bids they made in each auction, no changes at all would be needed tothe existing system."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "When the new Bid History service is created, it could simplysubscribe to the topic already containing the bid information."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In the queue optionshown in Figure 2-9, however, a new queue would be required for the Bid Historyservice, and the Bid Producer would need to be modified to add an additional con\u2010nection to the new queue."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The point here is that using queues requires significantchange to the system when adding new bidding functionality, whereas with the topicapproach no changes are needed at all in the existing infrastructure."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Also, notice thatthe Bid Producer is more decoupled in the topic option\u2014the Bid Producer doesn\u2019tknow how the bidding information will be used or by which services."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In the queueoption the Bid Producer knows exactly how the bidding information is used (and bywhom), and hence is more coupled to the system."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "With this analysis it seems clear that the topic approach using the publish-andsubscribe messaging model is the obvious and best choice."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, to quote RichHickey, the creator of the Clojure programming language:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Programmers know the benefits of everything and the trade-offs of nothing."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Architectsneed to understand both.Thinking architecturally is looking at the benefits of a given solution, but also analyz\u2010ing the negatives, or trade-offs, associated with a solution."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Continuing with the auc\u2010tion system example, a software architect would analyze the negatives of the topicsolution."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In analyzing the differences, notice first in Figure 2-8 that with a topic, any\u2010one can access bidding data, which introduces a possible issue with data access anddata security."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In the queue model illustrated in Figure 2-9, the data sent to the queuecan only be accessed by the specific consumer receiving that message."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "If a rogue ser\u2010vice did listen in on a queue, those bids would not be received by the correspondingservice, and a notification would immediately be sent about the loss of data (andhence a possible security breach)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In other words, it is very easy to wiretap into atopic, but not a queue."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In addition to the security issue, the topic solution in Figure 2-8 only supports homo\u2010geneous contracts."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "All services receiving the bidding data must accept the same con\u2010tract and set of bidding data."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In the queue option in Figure 2-9, each consumer canhave its own contract specific to the data it needs."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For example, suppose the new BidHistory service requires the current asking price along with the bid, but no other ser\u2010vice needs that information."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In this case, the contract would need to be modified,impacting all other services using that data."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In the queue model, this would be a sepa\u2010rate channel, hence a separate contract not impacting any other service."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Another disadvantage of the topic model illustrated in Figure 2-8 is that it does notsupport monitoring of the number of messages in the topic and hence auto-scalingcapabilities."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, with the queue option in Figure 2-9, each queue can be moni\u2010tored individually, and programmatic load balancing applied to each bidding con\u2010sumer so that each can be automatically scaled independency from one another."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Notethat this trade-off is technology specific in that the Advanced Message Queuing Pro\u2010tocol (AMQP) can support programmatic load balancing and monitoring because ofthe separation between an exchange (what the producer sends to) and a queue (whatthe consumer listens to)."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Given this trade-off analysis, now which is the better option?"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "And the answer?"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Itdepends!"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Table 2-1 summarizes these trade-offs."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The point here is that everything in software architecture has a trade-off: an advantageand disadvantage."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Thinking like an architect is analyzing these trade-offs, then asking\u201cwhich is more important: extensibility or security?\u201d The decision between differentsolutions will always depend on the business drivers, environment, and a host ofother factors."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Understanding Business Drivers"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Thinking like an architect is understanding the business drivers that are required forthe success of the system and translating those requirements into architecture charac\u2010teristics (such as scalability, performance, and availability)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This is a challenging taskthat requires the architect to have some level of business domain knowledge andhealthy, collaborative relationships with key business stakeholders."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We\u2019ve devotedseveral chapters in the book on this specific topic."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In Chapter 4 we define variousarchitecture characteristics."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In Chapter 5 we describe ways to identify and qualifyarchitecture characteristics."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "And in Chapter 6 we describe how to measure each ofthese characteristics to ensure the business needs of the system are met."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Balancing Architecture and Hands-On Codin",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "One of the difficult tasks an architect faces is how to balance hands-on coding withsoftware architecture."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We firmly believe that every architect should code and be ableto maintain a certain level of technical depth (see \u201cTechnical Breadth\u201d on page 25).While this may seem like an easy task, it is sometimes rather difficult to accomplish."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The first tip in striving for a balance between hands-on coding and being a softwarearchitect is avoiding the bottleneck trap."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The bottleneck trap occurs when the archi\u2010tect has taken ownership of code within the critical path of a project (usually theunderlying framework code) and becomes a bottleneck to the team."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This happensbecause the architect is not a full-time developer and therefore must balance betweenplaying the developer role (writing and testing source code) and the architect role(drawing diagrams, attending meetings, and well, attending more meetings)."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "One way to avoid the bottleneck trap as an effective software architect is to delegatethe critical path and framework code to others on the development team and thenfocus on coding a piece of business functionality (a service or a screen) one to threeiterations down the road."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Three positive things happen by doing this."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "First, the archi\u2010tect is gaining hands-on experience writing production code while no longer becom\u2010ing a bottleneck on the team."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Second, the critical path and framework code isdistributed to the development team (where it belongs), giving them ownership and abetter understanding of the harder parts of the system."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Third, and perhaps mostimportant, the architect is writing the same business-related source code as the devel\u2010opment team and is therefore better able to identify with the development team interms of the pain they might be going through with processes, procedures, and thedevelopment environment."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Suppose, however, that the architect is not able to develop code with the developmentteam."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "How can a software architect still remain hands-on and maintain some level oftechnical depth?"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "There are four basic ways an architect can still remain hands-on atwork without having to \u201cpractice coding from home\u201d (although we recommend prac\u2010ticing coding at home as well)."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The first way is to do frequent proof-of-concepts or POCs."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This practice not onlyrequires the architect to write source code, but it also helps validate an architecturedecision by taking the implementation details into account."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For example, if an archi\u2010tect is stuck trying to make a decision between two caching solutions, one effectiveway to help make this decision is to develop a working example in each caching prod\u2010uct and compare the results."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This allows the architect to see first-hand the implemen\u2010tation details and the amount of effort required to develop the full solution."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It alsoallows the architect to better compare architectural characteristics such as scalability,performance, or overall fault tolerance of the different caching solutions."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Our advice when doing proof-of-concept work is that, whenever possible, the archi\u2010tect should write the best production-quality code they can."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We recommend thispractice for two reasons."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "First, quite often, throwaway proof-of-concept code goesinto the source code repository and becomes the reference architecture or guidingexample for others to follow."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The last thing an architect would want is for theirthrowaway, sloppy code to be a representation of their typical work."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The second rea\u2010son is that by writing production-quality proof-of-concept code, the architect getspractice writing quality, well-structured code rather than continually developing badcoding practices."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Another way an architect can remain hands-on is to tackle some of the technical debtstories or architecture stories, freeing the development team up to work on the criti\u2010cal functional user stories."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "These stories are usually low priority, so if the architectdoes not have the chance to complete a technical debt or architecture story within agiven iteration, it\u2019s not the end of the world and generally does not impact the successof the iteration."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Similarly, working on bug fixes within an iteration is another way of maintaininghands-on coding while helping the development team as well."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "While certainly notglamorous, this technique allows the architect to identify where issues and weaknessmay be within the code base and possibly the architecture."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Leveraging automation by creating simple command-line tools and analyzers to helpthe development team with their day-to-day tasks is another great way to maintainhands-on coding skills while making the development team more effective."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Look forrepetitive tasks the development team performs and automate the process."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The devel\u2010opment team will be grateful for the automation."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Some examples are automatedsource validators to help check for specific coding standards not found in other linttests, automated checklists, and repetitive manual code refactoring tasks."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Automation can also be in the form of architectural analysis and fitness functions toensure the vitality and compliance of the architecture."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For example, an architect canwrite Java code in ArchUnit in the Java platform to automate architectural compli\u2010ance, or write custom fitness functions to ensure architectural compliance while gain\u2010ing hands-on experience."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We talk about these techniques in Chapter 6."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "A final technique to remain hands-on as an architect is to do frequent code reviews.While the architect is not actually writing code, at least they are involved in the sourcecode."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Further, doing code reviews has the added benefits of being able to ensure com\u2010pliance with the architecture and to seek out mentoring and coaching opportunitieson the team."
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

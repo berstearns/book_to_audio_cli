@@ -1,0 +1,349 @@
+[
+    {
+        "type": "chapter",
+        "title": "user_modeling_in_language_learning_with_macaronic_texts",
+        "sections": [
+            {
+                "type": "section",
+                "title": "Abstract",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Foreign language learners can acquire new vocabulary by using cognate and context clues when reading."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "To measure such incidental comprehension, we devise an experimental framework that involves reading mixed-language \u201cmacaronic\u201d sen- tences."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Using data collected via Ama- zon Mechanical Turk, we train a graphi- cal model to simulate a human subject\u2019s comprehension of foreign words, based on cognate clues (edit distance to an English word), context clues (pointwise mutual in- formation), and prior exposure."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Our model does a reasonable job at predicting which words a user will be able to understand, which should facilitate the automatic con- struction of comprehensible text for per- sonalized foreign language education."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Introduction",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Second language (L2) learning requires the ac- quisition of vocabulary as well as knowledge of the language\u2019s constructions."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "One of the ways in which learners become familiar with novel vocab- ulary and constructions is through reading."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Ac- cording to Krashen\u2019s Input Hypothesis (Krashen, 1989), learners acquire language through inciden- tal learning, which occurs when learners are ex- posed to comprehensible input."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "What constitutes \u201ccomprehensible input\u201d for a learner varies as their knowledge of the L2 increases."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For example, a student in their first month of German lessons would be hard-pressed to read German novels or even front-page news, but they might understand brief descriptions of daily routines."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Comprehen- sible input need not be completely familiar to the learner; it could include novel vocabulary items or structures (whose meanings they can glean from context)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Such input falls in the \u201czone of proxi- maldevelopment\u201d(Vygotski \u0306\u0131,2012),justoutside of the learner\u2019s comfort zone."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The related concept of \u201cscaffolding\u201d (Wood et al., 1976) consists of providing assistance to the learner at a level that is just sufficient for them to complete their task, which in our case is understanding a sentence."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Automatic selection or construction of comprehensible input\u2014perhaps online and personalized\u2014would be a useful educational technology."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, this requires modeling the student: what can an L2 learner understand in a given context?"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In this paper, we develop a model and train its parameters on data that we collect."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "For the remainder of the paper we focus on native English speakers learning German."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Our methodology is a novel solution to the problem of controlling for the learner\u2019s German skill level."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We use subjects with zero previous knowledge of German, but we translate portions of the sentence into English."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Thus, we can presume that they do already know the English words and do not al- ready know the German words (except from see- ing them in earlier trials within our experiment)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We are interested in whether they can jointly infer the meanings of the remaining German words in the sentence, so we ask them to guess."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The resulting stimuli are sentences like \u201cDer Polizist arrested the Bankra \u0308uber.\u201d Even a reader with no knowledge of German is likely to be able to understand this sentence reasonably well by us- ing cognate and context clues."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We refer to this as a macaronic sentence; so-called macaronic lan- guage is a pastiche of two or more languages (of- ten intended for humorous effect)."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Our experimental subjects are required to guess what\u201cPolizist\u201dand\u201cBankra \u0308uber\u201dmeaninthis sentence."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We train a featurized model to pre- dict these guesses jointly within each sentence and thereby predict incidental comprehension on any macaronic sentence."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Indeed, we hope our model design will generalize from predicting incidental comprehension on macaronic sentences (for our beginner subjects, who need some context words to be in English) to predicting incidental compre- hension on full German sentences (for more ad-vanced students, who understand some of the con- text words as if they were in English)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In addition, we are developing a user interface that uses maca- ronic sentences directly as a medium of language instruction: our companion paper (Renduchintala et al., 2016) gives an overview of that project."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We briefly review previous work, then describe our data collection setup and the data obtained."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Fi- nally, we discuss our model of learner comprehen- sion and validate our model\u2019s predictions."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Previous Work",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Natural language processing (NLP) has long been applied to education, but the majority of this work focuses on evaluation and assessment."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Promi- nent recent examples include Heilman and Mad- nani (2012), Burstein et al."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "(2013) and Madnani et al."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "(2012)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Other works fall more along the lines of intelligent and adaptive tutoring systems designed to improve learning outcomes."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Most of those are outside of the area of NLP (typically fo- cusing on math or science)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "An overview of NLP- based work in the education sphere can be found in Litman (2016)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "There has also been work spe- cifictosecondlanguageacquisition,suchasO \u0308zbal et al."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "(2014), where the focus has been to build a system to help learners retain new vocabulary."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, much of the existing work on incidental learning is found in the education and cognitive science literature rather than NLP."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Our work is related to Labutov and Lipson (2014), which also tries to leverage incidental learning using mixed L1 and L2 language."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Where their work uses surprisal to choose contexts in which to insert L2 vocabulary, we consider both context features and other factors such as cognate features (described in detail in 4.1)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We collect data that gives direct evidence of the user\u2019s un- derstanding of words (by asking them to provide English guesses) rather than indirectly (via ques- tions about sentence validity, which runs the risk of overestimating their knowledge of a word, if, for instance, they\u2019ve only learned whether it is an- imate or inanimate rather than the exact meaning)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Furthermore, we are not only interested in whether a mixed L1 and L2 sentence is comprehensible; we are also interested in determining a distribution over the learner\u2019s belief state for each word in the sentence."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We do this in an engaging, game-like setting, which provides the user with hints when the task is too difficult for them to complete."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "3 Data Collection Setup",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Our method of scaffolding is to replace certain for- eign words and phrases with their English trans- lations, yielding a macaronic sentence.1 Simply presenting these to a learner would not give us feedback on the learner\u2019s belief state for each for- eign word."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Even assessing the learner\u2019s reading comprehension would give only weak indirect in- formation about what was understood."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Thus, we collect data where a learner explicitly guesses a foreign word\u2019s translation when seen in the mac- aronic context."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "These guesses are then treated as supervised labels to train our user model."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We used Amazon Mechanical Turk (MTurk) to collect data."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Users qualified for tasks by completing a short quiz and survey about their language knowledge."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Only users whose results indicated no knowledge of German and self-identified as native speakers of English were allowed to complete tasks."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "With German as the foreign language, we generated content by crawling a simplified German news website, nachrichtenleicht."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "de."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We chose simplified German in order to minimize translation errors and to make the task more suitable for novice learners."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We translated each German sentence using the Moses Statistical Machine Translation (SMT) toolkit (Koehn et al., 2007)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The SMT system was trained on the German-English Commoncrawl parallel text used in WMT 2015 (Bojar et al., 2015)."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We used 200 German sentences, presenting each to 10 different users."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In MTurk jargon, this yielded 2000 Human Intelligence Tasks (HITs)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Each HIT required its user to participate in several rounds of guessing as the English translation was incrementally revealed."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "A user was paid US$0.12 per HIT, with a bonus of US$6 to any user who accumulated more than 2000 total points."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "3.1 HITs and Submissions, For each HIT, the user first sees a German sen- tence2 (Figure 1)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "A text box is presented below each German word in the sentence, for the userto type in their \u201cbest guess\u201d of what each Ger- man word means."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The user must fill in at least half of the text boxes before submitting this set of guesses."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The resulting submission\u2014i.e., the maca- ronic sentence together with the set of guesses\u2014is logged in a database as a single training example, and the system displays feedback to the user about which guesses were correct."
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

@@ -1,0 +1,1744 @@
+[
+    {
+        "type": "chapter",
+        "sections": [
+            {
+                "type": "section",
+                "title": "What Happens When ThereAre No \u201cBest Practices\u201d?",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Why does a technologist like a software architect present at a conference or write abook?"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Because they have discovered what is colloquially known as a \u201cbest practice,\u201d aterm so overused that those who speak it increasingly experience backlash."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Regardlessof the term, technologists write books when they have figured out a novel solution toa general problem and want to broadcast it to a wider audience."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "But what happens for that vast set of problems that have no good solutions?"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Entireclasses of problems exist in software architecture that have no general good solutions,but rather present one messy set of trade-offs cast against an (almost) equally messyset."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Software developers build outstanding skills in searching online for solutions to acurrent problem."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For example, if they need to figure out how to configure a particulartool in their environment, expert use of Google finds the answer.But that\u2019s not true for architects"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "For architects, many problems present unique challenges because they conflate theexact environment and circumstances of your organization\u2014what are the chancesthat someone has encountered exactly this scenario and blogged it or posted it onStack Overflow?"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Architects may have wondered why so few books exist about architecture comparedto technical topics like frameworks, APIs, and so on."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Architects rarely experiencecommon problems but constantly struggle with decision making in novel situations.For architects, every problem is a snowflake."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In many cases, the problem is novel notjust within a particular organization but rather throughout the world."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "No books orconference sessions exist for those problems!"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Architects shouldn\u2019t constantly seek out silver-bullet solutions to their problems; theyare as rare now as in 1986, when Fred Brooks coined the term:There is no single development, in either technology or management technique, whichby itself promises even one order of magnitude [tenfold] improvement within a decadein productivity, in reliability, in simplicity.\u2014Fred Brooks from \u201cNo Silver Bullet\u201d"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Because virtually every problem presents novel challenges, the real job of an architectlies in their ability to objectively determine and assess the set of trade-offs on eitherside of a consequential decision to resolve it as well as possible."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The authors don\u2019t talkabout \u201cbest solutions\u201d (in this book or in the real world) because \u201cbest\u201d implies thatan architect has managed to maximize all the possible competing factors within thedesign."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Instead, our tongue-in-cheek advice is as follows:Don\u2019t try to find the best design in software architecture; instead,strive for the least worst combination of trade-offs."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Often, the best design an architect can create is the least worst collection of trade-offs\u2014no single architecture characteristics excels as it would alone, but the balance of allthe competing architecture characteristics promote project success."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Which begs the question: \u201cHow can an architect find the least worst combination oftrade-offs (and document them effectively)?\u201d This book is primarily about decisionmaking, enabling architects to make better decisions when confronted with novelsituations."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Why \u201cThe Hard Parts\u201d?",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Why did we call this book Software Architecture: The Hard Parts?"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Actually, the \u201chard\u201din the title performs double duty."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "First, hard connotes di\u0086cult, and architects con\u2010stantly face difficult problems that literally (and figuratively) no one has faced before,involving numerous technology decisions with long-term implications layered on topof the interpersonal and political environment where the decision must take place."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Second, hard connotes solidity\u2014just as in the separation of hardware and software,the hard one should change much less because it provides the foundation for the softstuff."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Similarly, architects discuss the distinction between architecture and design,where the former is structural and the latter is more easily changed."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Thus, in thisbook, we talk about the foundational parts of architecture."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The definition of software architecture itself has provided many hours of nonproductive conversation among its practitioners."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "One favorite tongue-in-cheek defi\u2010nition is that \u201csoftware architecture is the stu\u0088 that\u2019s hard to change later.\u201d That stu\u0088 iswhat our book is about."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Giving Timeless Advice About Software Architecture",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The software development ecosystem constantly and chaotically shifts and grows.Topics that were all the rage a few years ago have either been subsumed by the ecosys\u2010tem and disappeared or replaced by something different/better."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For example, 10 yearsago, the predominant architecture style for large enterprises was orchestrationdriven, service-oriented architecture."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Now, virtually no one builds in that architecturestyle anymore (for reasons we\u2019ll uncover along the way); the current favored style formany distributed systems is microservices."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "How and why did that transition happen?"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "When architects look at a particular style (especially a historical one), they must con\u2010sider the constraints in place that lead to that architecture becoming dominant."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "At thetime, many companies were merging to become enterprises, with all the attendantintegration woes that come with that transition."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Additionally, open source wasn\u2019t aviable option (often for political rather than technical reasons) for large companies.Thus, architects emphasized shared resources and centralized orchestration as asolution."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "However, in the intervening years, open source and Linux became viable alternatives,making operating systems commercially free."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, the real tipping point occur\u2010red when Linux became operationally free with the advent of tools like Puppet andChef, which allowed development teams to programmatically spin up their environ\u2010ments as part of an automated build."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Once that capability arrived, it fostered an archi\u2010tectural revolution with microservices and the quickly emerging infrastructure ofcontainers and orchestration tools like Kubernetes."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "This illustrates that the software development ecosystem expands and evolves incompletely unexpected ways."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "One new capability leads to another one, which unex\u2010pectedly creates new capabilities."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Over the course of time, the ecosystem completelyreplaces itself, one piece at a time."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "This presents an age-old problem for authors of books about technology generallyand software architecture specifically\u2014how can we write something that isn\u2019t oldimmediately?"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We don\u2019t focus on technology or other implementation details in this book."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Rather,we focus on how architects make decisions, and how to objectively weigh trade-offswhen presented with novel situations."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We use contemporaneous scenarios and exam\u2010ples to provide details and context, but the underlying principles focus on trade-offanalysis and decision making when faced with new problems."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "The Importance of Data in Architecture",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Data is a precious thing and will last longer than the systems themselves"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "For many in architecture, data is everything."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Every enterprise building any systemmust deal with data, as it tends to live much longer than systems or architecture,requiring diligent thought and design."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, many of the instincts of data archi\u2010tects to build tightly coupled systems create conflicts within modern distributedarchitectures."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For example, architects and DBAs must ensure that business data sur\u2010vives the breaking apart of monolith systems and that the business can still derivevalue from its data regardless of architecture undulations."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "It has been said that data is the most important asset in a company."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Businesses want toextract value from the data that they have and are finding new ways to deploy data indecision making."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Every part of the enterprise is now data driven, from servicing exist\u2010ing customers, to acquiring new customers, increasing customer retention, improv\u2010ing products, predicting sales, and other trends."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This reliance on data means that allsoftware architecture is in the service of data, ensuring the right data is available andusable by all parts of the enterprise."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The authors built many distributed systems a few decades ago when they first becamepopular, yet decision making in modern microservices seems more difficult, and wewanted to figure out why."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We eventually realized that, back in the early days of dis\u2010tributed architecture, we mostly still persisted data in a single relational database.However, in microservices and the philosophical adherence to a bounded contextfrom Domain-Driven Design, as a way of limiting the scope of implementation detailcoupling, data has moved to an architectural concern, along with transactionality.Many of the hard parts of modern architecture derive from tensions between dataand architecture concerns, which we untangle in both Part I and Part II."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "One important distinction that we cover in a variety of chapters is the separationbetween operational versus analytical data:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Operational dataData used for the operation of the business, including sales, transactional data,inventory, and so on."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This data is what the company runs on\u2014if something inter\u2010rupts this data, the organization cannot function for very long."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This type of datais defined as Online Transactional Processing (OLTP), which typically involvesinserting, updating, and deleting data in a database."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Analytical dataData used by data scientists and other business analysts for predictions, trending,and other business intelligence."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This data is typically not transactional and oftennot relational\u2014it may be in a graph database or snapshots in a different formatthan its original transactional form."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This data isn\u2019t critical for the day-to-dayoperation but rather for the long-term strategic direction and decisions."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We cover the impact of both operational and analytical data throughout the book."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Architectural Decision Records",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "One of the most effective ways of documenting architecture decisions is throughArchitectural Decision Records (ADRs)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "ADRs were first evangelized by MichaelNygard in a blog post and later marked as \u201cadopt\u201d in the Thoughtworks TechnologyRadar."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "An ADR consists of a short text file (usually one to two pages long) describinga specific architecture decision."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "While ADRs can be written using plain text, they areusually written in some sort of text document format like AsciiDoc or Markdown.Alternatively, an ADR can also be written using a wiki page template."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We devoted anentire chapter to ADRs in our previous book, Fundamentals of Software Architecture(O\u2019Reilly)."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We will be leveraging ADRs as a way of documenting various architecture decisionsmade throughout the book."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For each architecture decision, we will be using the fol\u2010lowing ADR format with the assumption that each ADR is approved"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "ADR: A short noun phrase containing the architecture decision"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "ContextIn this section of the ADR we will add a short one- or two-sentence description of theproblem, and list the alternative solutions."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "DecisionIn this section we will state the architecture decision and provide a detailed justifica\u2010tion of the decision."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "ConsequencesIn this section of the ADR we will describe any consequences after the decision isapplied, and also discuss the trade-offs that were considered."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Documenting a decision is important for an architect, but governing the proper useof the decision is a separate topic."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Fortunately, modern engineering practices allowautomating many common governance concerns by using architecture fitnessfunctions."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Architecture Fitness Functions",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Once an architect has identified the relationship between components and codifiedthat into a design, how can they make sure that the implementers will adhere to thatdesign?"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "More broadly, how can architects ensure that the design principles theydefine become reality if they aren\u2019t the ones to implement them?"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "These questions fall under the heading of architecture governance, which applies toany organized oversight of one or more aspects of software development."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "As thisbook primarily covers architecture structure, we cover how to automate design andquality principles via fitness functions in many places."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Software development has slowly evolved over time to adapt unique engineeringpractices."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In the early days of software development, a manufacturing metaphor wascommonly applied to software practices, both in the large (like the Waterfall develop\u2010ment process) and small (integration practices on projects)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In the early 1990s, arethinking of software development engineering practices, lead by Kent Beck and theother engineers on the C3 project, called eXtreme Programming (XP), illustrated theimportance of incremental feedback and automation as key enablers of softwaredevelopment productivity."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In the early 2000s, the same lessons were applied to theintersection of software development and operations, spawning the new role ofDevOps and automating many formerly manual operational chores."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Just as before,automation allows teams to go faster because they don\u2019t have to worry about thingsbreaking without good feedback."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Thus, automation and feedback have become centraltenets for effective software development."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Consider the environments and situations that lead to breakthroughs in automation.In the era before continuous integration, most software projects included a lengthyintegration phase."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Each developer was expected to work in some level of isolationfrom others, then integrate all the code at the end into an integration phase."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Vestigesof this practice still linger in version control tools that force branching and preventcontinuous integration."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Not surprisingly, a strong correlation existed between projectsize and the pain of the integration phase."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "By pioneering continuous integration, theXP team illustrated the value of rapid, continuous feedback."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The DevOps revolution followed a similar course."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "As Linux and other open sourcesoftware became \u201cgood enough\u201d for enterprises, combined with the advent of toolsthat allowed programmatic definition of (eventually) virtual machines, operationspersonnel realized they could automate machine definitions and many other repeti\u2010tive task"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In both cases, advances in technology and insights led to automating a recurring jobthat was handled by an expensive role\u2014which describes the current state of architec\u2010ture governance in most organizations."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For example, if an architect chooses a particu\u2010lar architecture style or communication medium, how can they make sure that adeveloper implements it correctly?"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "When done manually, architects perform codereviews or perhaps hold architecture review boards to assess the state of governance.However, just as in manually configuring computers in operations, important detailscan easily fall through superficial reviews."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Using Fitness Functions",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In the 2017 book Building Evolutionary Architectures (O\u2019Reilly), the authors (NealFord, Rebecca Parsons, and Patrick Kua) defined the concept of an architectural fit\u2010ness function: any mechanism that performs an objective integrity assessment of somearchitecture characteristic or combination of architecture characteristics."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Here is apoint-by-point breakdown of that definition:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Any mechanismArchitects can use a wide variety of tools to implement fitness functions; we willshow numerous examples throughout the book."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For example, dedicated testinglibraries exist to test architecture structure, architects can use monitors to testoperational architecture characteristics such as performance or scalability, andchaos engineering frameworks test reliability and resiliency."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Objective integrity assessmentOne key enabler for automated governance lies with objective definitions forarchitecture characteristics."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For example, an architect can\u2019t specify that they wanta \u201chigh performance\u201d website; they must provide an object value that can bemeasured by a test, monitor, or other fitness function."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Architects must watch out for composite architecture characteristics\u2014ones thataren\u2019t objectively measurable but are really composites of other measurablethings."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For example, \u201cagility\u201d isn\u2019t measurable, but if an architect starts pullingthe broad term agility apart, the goal is for teams to be able to respond quicklyand confidently to change, either in ecosystem or domain."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Thus, an architect canfind measurable characteristics that contribute to agility: deployability, testability,cycle time, and so on."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Often, the lack of ability to measure an architecture char\u2010acteristic indicates too vague a definition."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "If architects strive toward measurableproperties, it allows them to automate fitness function application."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Some architecture characteristic or combination of architecture characteristicsThis characteristic describes the two scopes for fitness functions"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "AtomicThese fitness functions handle a single architecture characteristic in isola\u2010tion."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For example, a fitness function that checks for component cycles withina codebase is atomic in scope."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "HolisticHolistic fitness functions validate a combination of architecture characteris\u2010tics."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "A complicating feature of architecture characteristics is the synergy theysometimes exhibit with other architecture characteristics."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For example, if anarchitect wants to improve security, a good chance exists that it will affectperformance."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Similarly, scalability and elasticity are sometimes at odds\u2014supporting a large number of concurrent users can make handling suddenbursts more difficult."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Holistic fitness functions exercise a combination ofinterlocking architecture characteristics to ensure that the combined effectwon\u2019t negatively affect the architecture."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "An architect implements fitness functions to build protections around unexpectedchange in architecture characteristics."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In the Agile software development world,developers implement unit, functional, and user acceptance tests to validate differentdimensions of the domain design."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, until now, no similar mechanism existedto validate the architecture characteristics part of the design."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In fact, the separationbetween fitness functions and unit tests provides a good scoping guideline for archi\u2010tects."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Fitness functions validate architecture characteristics, not domain criteria; unittests are the opposite."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Thus, an architect can decide whether a fitness function or unittest is needed by asking the question: \u201cIs any domain knowledge required to executethis test?\u201d If the answer is \u201cyes,\u201d then a unit/function/user acceptance test is appropri\u2010ate; if \u201cno,\u201d then a fitness function is needed."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "For example, when architects talk about elasticity, it\u2019s the ability of the application towithstand a sudden burst of users."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Notice that the architect doesn\u2019t need to know anydetails about the domain\u2014this could be an ecommerce site, an online game, or some\u2010thing else."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Thus, elasticity is an architectural concern and within the scope of a fitnessfunction."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "If on the other hand the architect wanted to validate the proper parts of amailing address, that is covered via a traditional test."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Of course, this separation isn\u2019tpurely binary\u2014some fitness functions will touch on the domain and vice versa, butthe differing goals provide a good way to mentally separate them."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Here are a couple of examples to make the concept less abstract."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "One common architect goal is to maintain good internal structural integrity in thecodebase."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, malevolent forces work against the architect\u2019s good intentions onmany platforms."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For example, when coding in any popular Java or .NET developmentenvironment, as soon as a developer references a class not already imported, the IDEhelpfully presents a dialog asking the developer if they would like to auto-import thereference."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This occurs so often that most programmers develop the habit of swattingthe auto-import dialog away like a reflex action."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "However, arbitrarily importing classes or components among one another spells dis\u2010aster for modularity."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For example, Figure 1-1 illustrates a particularly damaging antipattern that architects aspire to avoid."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In this anti-pattern, each component references something in the others."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Having anetwork of components such as this damages modularity because a developer cannotreuse a single component without also bringing the others along."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "And, of course, ifthe other components are coupled to other components, the architecture tends moreand more toward the Big Ball of Mud anti-pattern."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "How can architects govern thisbehavior without constantly looking over the shoulders of trigger-happy developers?Code reviews help but happen too late in the development cycle to be effective."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "If anarchitect allows a development team to rampantly import across the codebase for aweek until the code review, serious damage has already occurred in the codebase."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In the code, an architect uses the metrics tool JDepend to check the dependenciesbetween packages."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The tool understands the structure of Java packages and fails thetest if any cycles exist."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "An architect can wire this test into the continuous build on aproject and stop worrying about the accidental introduction of cycles by triggerhappy developers."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This is a great example of a fitness function guarding the important rather than urgent practices of software development"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Example 1-1 shows a very low-level, code-centric fitness function."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Many popularcode hygiene tools (such as SonarQube) implement many common fitness functionsin a turnkey manner."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, architects may also want to validate the macro struc\u2010ture of the architecture as well as the micro."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "When designing a layered architecturesuch as the one in Figure 1-2, the architect defines the layers to ensure separation ofconcerns"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "However, how can the architect ensure that developers will respect these layers?"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Somedevelopers may not understand the importance of the patterns, while others mayadopt a \u201cbetter to ask forgiveness than permission\u201d attitude because of some overrid\u2010ing local concern, such as performance."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "But allowing implementers to erode the rea\u2010sons for the architecture hurts the long-term health of the architecture.ArchUnit allows architects to address this problem via a fitness function, shown inExample 1-2."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In Example 1-2, the architect defines the desirable relationship between layers andwrites a verification fitness function to govern it."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This allows an architect to establisharchitecture principles outside the diagrams and other informational artifacts, andverify them on an ongoing basis."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "A similar tool in the .NET space, NetArchTest, allows similar tests for that platform.A layer verification in C# appears in Example 1-3."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Tools continue to appear in this space with increasing degrees of sophistication."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Wewill continue to highlight many of these techniques as we illustrate fitness functionsalongside many of our solutions."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Finding an objective outcome for a fitness function is critical."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, objectivedoesn\u2019t imply static."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Some fitness functions will have noncontextual return values,such as true/false or a numeric value such as a performance threshold."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However,other fitness functions (deemed dynamic) return a value based on some context."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Forexample, when measuring scalability, architects measure the number of concurrentusers and also generally measure the performance for each user."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Often, architectsdesign systems so that as the number of users goes up, performance per user declinesslightly\u2014but doesn\u2019t fall off a cliff."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Thus, for these systems, architects design perfor\u2010mance fitness functions that take into account the number of concurrent users."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Aslong as the measure of an architecture characteristic is objective, architects can test it."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "While most fitness functions should be automated and run continually, some willnecessarily be manual."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "A manual fitness function requires a person to handle the vali\u2010dation."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For example, for systems with sensitive legal information, a lawyer may needto review changes to critical parts to ensure legality, which cannot be automated.Most deployment pipelines support manual stages, allowing teams to accommodatemanual fitness functions."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Ideally, these are run as often as reasonably possible\u2014a vali\u2010dation that doesn\u2019t run can\u2019t validate anything."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Teams execute fitness functions eitheron demand (rarely) or as part of a continuous integration work stream (mostcommon)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "To fully achieve the benefit of validations such as fitness functions, theyshould be run continually"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Continuity is important, as illustrated in this example of enterprise-level governanceusing fitness functions."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Consider the following scenario: what does a company dowhen a zero-day exploit is discovered in one of the development frameworks or libra\u2010ries the enterprise uses?"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "If it\u2019s like most companies, security experts scour projects tofind the offending version of the framework and make sure it\u2019s updated, but that pro\u2010cess is rarely automated, relying on many manual steps."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This isn\u2019t an abstract ques\u2010tion; this exact scenario affected a major financial institution described in TheEquifax Data Breach."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Like the architecture governance described previously, manualprocesses are error prone and allow details to escape."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Imagine an alternative world in which every project runs a deployment pipeline, andthe security team has a \u201cslot\u201d in each team\u2019s deployment pipeline where they candeploy fitness functions."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Most of the time, these will be mundane checks for safe\u2010guards like preventing developers from storing passwords in databases and similarregular governance chores."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, when a zero-day exploit appears, having thesame mechanism in place everywhere allows the security team to insert a test in everyproject that checks for a certain framework and version number; if it finds the dan\u2010gerous version, it fails the build and notifies the security team."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Teams configuredeployment pipelines to awaken for any change to the ecosystem: code, databaseschema, deployment configuration, and fitness functions."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This allows enterprises touniversally automate important governance tasks."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Fitness functions provide many benefits for architects, not the least of which is thechance to do some coding again!"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "One of the universal complaints among architects isthat they don\u2019t get to code much anymore\u2014but fitness functions are often code!"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Bybuilding an executable specification of the architecture, which anyone can validateanytime by running the project\u2019s build, architects must understand the system and itsongoing evolution well, which overlaps with the core goal of keeping up with thecode of the project as it grows."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "However powerful fitness functions are, architects should avoid overusing them.Architects should not form a cabal and retreat to an ivory tower to build an impossi\u2010bly complex, interlocking set of fitness functions that merely frustrate developers andteams."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Instead, it\u2019s a way for architects to build an executable checklist of importantbut not urgent principles on software projects."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Many projects drown in urgency,allowing some important principles to slip by the side."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This is the frequent cause oftechnical debt: \u201cWe know this is bad, but we\u2019ll come back to fix it later\u201d\u2014and laternever comes."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "By codifying rules about code quality, structure, and other safeguardsagainst decay into fitness functions that run continually, architects build a qualitychecklist that developers can\u2019t skip."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "A few years ago, the excellent book The Checklist Manifesto by Atul Gawande (Pica\u2010dor) highlighted the use of checklists by professionals like surgeons, airline pilots,and those other fields who commonly use (sometimes by force of law) checklists aspart of their job."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It isn\u2019t because they don\u2019t know their job or are particularly forgetful;when professionals perform the same task over and over, it becomes easy to foolthemselves when it\u2019s accidentally skipped, and checklists prevent that."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Fitness func\u2010tions represent a checklist of important principles defined by architects and run aspart of the build to make sure developers don\u2019t accidentally (or purposefully, becauseof external forces like schedule pressure) skip them."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We utilize fitness functions throughout the book when an opportunity arises to illus\u2010trate governing an architectural solution as well as the initial design."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Architecture Versus Design: Keeping De\u0085nitions Simple",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "A constant area of struggle for architects is keeping architecture and design as separatebut related activities."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "While we don\u2019t want to wade into the never-ending argumentabout this distinction, we strive in this book to stay firmly on the architecture side ofthat spectrum for several reasons."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Second, by focusing on architecture concepts, we can avoid the numerous implemen\u2010tations of those concepts."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Architects can implement asynchronous communication ina variety of ways; we focus on why an architect would choose asynchronous commu\u2010nication and leave the implementation details to another place."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Third, if we start down the path of implementing all the varieties of options we show,this would be the longest book ever written."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Focus on architecture principles allowsus to keep things as generic as they can be."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "ServiceIn colloquial terms, a service is a cohesive collection of functionality deployed asan independent executable."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Most of the concepts we discuss with regard to serv\u2010ices apply broadly to distributed architectures, and specifically microservicesarchitectures.In the terms we define in Chapter 2, a service is part of an architecture quantum,which includes further definitions of both static and dynamic coupling betweenservices and other quanta."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "CouplingTwo artifacts (including services) are coupled if a change in one might require achange in the other to maintain proper functionality."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "ComponentAn architectural building block of the application that does some sort of businessor infrastructure function, usually manifested through a package structure (Java),namespace (C#), or a physical grouping of source code files within some sort ofdirectory structure."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For example, the component Order History might be imple\u2010mented through a set of class files located in the namespace app.business.order.history."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Synchronous communicationTwo artifacts communicate synchronously if the caller must wait for the responsebefore proceeding."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Asynchronous communicationTwo artifacts communicate asynchronously if the caller does not wait for theresponse before proceeding."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Optionally, the caller can be notified by the receiverthrough a separate channel when the request has completed."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Orchestrated coordinationA workflow is orchestrated if it includes a service whose primary responsibility isto coordinate the workflow."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Choreographed coordinationA workflow is choreographed when it lacks an orchestrator; rather, the servicesin the workflow share the coordination responsibilities of the workflow."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "AtomictyA workflow is atomic if all parts of the workflow maintain a consistent state at alltimes; the opposite is represented by the spectrum of eventual consistency, cov\u2010ered in Chapter 6."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "ContractWe use the term contract broadly to define the interface between two softwareparts, which may encompass method or function calls, integration architectureremote calls, dependencies, and so on."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Anywhere two pieces of software join, acontract is involved."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Software architecture is by its nature abstract: we cannot know what unique combi\u2010nation of platforms, technologies, commercial software, and the other dizzying arrayof possibilities our readers might have, except that no two are exactly alike."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We covermany abstract ideas, but must ground them with some implementation details tomake them concrete."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "To that end, we need a problem to illustrate architecture con\u2010cepts against\u2014which leads us to the Sysops Squad."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Introducing the Sysops Squad Saga",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "sagaA long story of heroic achievement."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We discuss a number of sagas in this book, both literal and figurative."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Architects haveco-opted the term saga to describe transactional behavior in distributed architectures(which we cover in detail in Chapter 12)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, discussions about architecturetend to become abstract, especially when considering abstract problems such as thehard parts of architecture."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "To help solve this problem and provide some real-worldcontext for the solutions we discuss, we kick off a literal saga about the Sysops Squad."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We use the Sysops Squad saga within each chapter to illustrate the techniques andtrade-offs described in this book."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "While many books on software architecture covernew development efforts, many real-world problems exist within existing systems.Therefore, our story starts with the existing Sysops Squad architecture highlightedhere."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Penultimate Electronics is a large electronics giant that has numerous retail storesthroughout the country."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "When customers buy computers, TVs, stereos, and otherelectronic equipment, they can choose to purchase a support plan."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "When problemsoccur, customer-facing technology experts (the Sysops Squad) come to the customer\u2019sresidence (or work office) to fix problems with the electronic device."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The four main users of the Sysops Squad ticketing application are as follows:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "AdministratorThe administrator maintains the internal users of the system, including the list ofexperts and their corresponding skill set, location, and availability."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The adminis\u2010trator also manages all of the billing processing for customers using the system,and maintains static reference data (such as supported products, name-valuepairs in the system, and so on)."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "CustomerThe customer registers for the Sysops Squad service and maintains their cus\u2010tomer profile, support contracts, and billing information."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Customers enter prob\u2010lem tickets into the system, and also fill out surveys after the work has beencompleted."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Sysops Squad expertExperts are assigned problem tickets and fix problems based on the ticket."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Theyalso interact with the knowledge base to search for solutions to customer prob\u2010lems and enter notes about repairs"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "ManagerThe manager keeps track of problem ticket operations and receives operationaland analytical reports about the overall Sysops Squad problem ticket system."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Nonticketing Workflow",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The nonticketing workflows include those actions that administrators, managers, andcustomers perform that do not relate to a problem ticket."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "These workflows are out\u2010lined as follows:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "1."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Sysops Squad experts are added and maintained in the system through anadministrator, who enters in their locale, availability, and skills."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "2."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Customers register with the Sysops Squad system and have multiple supportplans based on the products they purchased."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "3."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Customers are automatically billed monthly based on credit card informationcontained in their profile."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Customers can view billing history and statementsthrough the system."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "4."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Managers request and receive various operational and analytical reports, includ\u2010ing financial reports, expert performance reports, and ticketing reports."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Ticketing Workflow",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The ticketing workflow starts when a customer enters a problem ticket into the sys\u2010tem, and ends when the customer completes the survey after the repair is done."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Thisworkflow is outlined as follows:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "1."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Customers who have purchased the support plan enter a problem ticket by usingthe Sysops Squad website."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "2."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Once a problem ticket is entered in the system, the system then determineswhich Sysops Squad expert would be the best fit for the job based on skills, cur\u2010rent location, service area, and availability."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "3."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Once assigned, the problem ticket is uploaded to a dedicated custom mobile appon the Sysops Squad expert\u2019s mobile device."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The expert is also notified via a textmessage that they have a new problem ticket."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "4."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The customer is notified through an SMS text message or email (based on theirprofile preference) that the expert is on their way."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "5."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The expert uses the custom mobile application on their phone to retrieve theticket information and location."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The Sysops Squad expert can also access aknowledge base through the mobile app to find out what has been done in thepast to fix the problem."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "6."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Once the expert fixes the problem, they mark the ticket as \u201ccomplete.\u201d The sysopssquad expert can then add information about the problem and repair the knowl\u2010edge base."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "7."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "After the system receives notification that the ticket is complete, it sends an emailto the customer with a link to a survey, which the customer then fills out."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "8."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The system receives the completed survey from the customer and records thesurvey information."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "A Bad Scenario",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Things have not been good with the Sysops Squad problem ticket application lately.The current trouble ticket system is a large monolithic application that was developedmany years ago."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Customers are complaining that consultants are never showing upbecause of lost tickets, and often the wrong consultant shows up to fix somethingthey know nothing about."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Customers have also been complaining that the system isnot always available to enter new problem tickets."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Change is also difficult and risky in this large monolith."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Whenever a change is made,it usually takes too long and something else usually breaks."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Because of reliabilityissues, the Sysops Squad system frequently \u201cfreezes up,\u201d or crashes, resulting in allapplication functionality not being available anywhere from five minutes to twohours while the problem is identified and the application restarted."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "If something isn\u2019t done soon, Penultimate Electronics will be forced to abandon thevery lucrative support contract business line and lay off all the Sysops Squad adminis\u2010trators, experts, managers, and IT development staff\u2014including the architects."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Sysops Squad Architectural Components",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The monolithic system for the Sysops Squad application handles ticket management,operational reporting, customer registration, and billing, as well as general adminis\u2010trative functions such as user maintenance, login, and expert skills and profile main\u2010tenance."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Figure 1-3 and the corresponding Table 1-1 illustrate and describe thecomponents of the existing monolithic application (the ss."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "part of the namespacespecifies the Sysops Squad application context)."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "These components will be used in subsequent chapters to illustrate various techni\u2010ques and trade-offs when dealing with breaking applications into distributedarchitectures."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Sysops Squad Data Model",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The Sysops Squad application with its various components listed in Table 1-1 uses asingle schema in the database to host all its tables and related database code."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Thedatabase is used to persist customers, users, contracts, billing, payments, knowledgebase, and customer surveys; the tables are listed in Table 1-2, and the ER model isillustrated in Figure 1-4."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The Sysops data model is a standard third normal form data model with only a fewstored procedures or triggers."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, a fair number of views exist that are mainlyused by the Reporting component."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "As the architecture team tries to break up theapplication and move toward distributed architecture, it will have to work with thedatabase team to accomplish the tasks at the database level."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This setup of databasetables and views will be used throughout the book to discuss various techniques andtrade-offs to accomplish the task of breaking apart the database."
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

@@ -1,0 +1,1354 @@
+[
+    {
+        "type": "chapter",
+        "title": "a comprehensive survey of grammar error correction",
+        "sections": [
+            {
+                "type": "section",
+                "title": "Abstract\u2014",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Grammar error correction (GEC) is an importantapplication aspect of natural language processing techniques.The past decade has witnessed significant progress achieved inGEC for the sake of increasing popularity of machine learningand deep learning, especially in late 2010s when near humanlevel GEC systems are available."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, there is no priorwork focusing on the whole recapitulation of the progress."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Wepresent the first survey in GEC for a comprehensive retrospectof the literature in this area."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We first give the introduction offive public datasets, data annotation schema, two importantshared tasks and four standard evaluation metrics."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Moreimportantly, we discuss four kinds of basic approaches,including statistical machine translation based approach, neuralmachine translation based approach, classification basedapproach and language model based approach, six commonlyapplied performance boosting techniques for GEC systems andtwo data augmentation methods."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Since GEC is typically viewedas a sister task of machine translation, many GEC systems arebased on neural machine translation (NMT) approaches, wherethe neural sequence-to-sequence model is applied."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Similarly,some performance boosting techniques are adapted frommachine translation and are successfully combined with GECsystems for enhancement on the final performance."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Furthermore,we conduct an analysis in level of basic approaches, performanceboosting techniques and integrated GEC systems based on theirexperiment results respectively for more clear patterns andconclusions."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Finally, we discuss five prospective directions forfuture GEC researches."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "INTRODUCTION",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "NGLISH boasts the biggest number of speakersaround the world."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For most of English speakers,English is not their natural language, thus they are underinsufficient language proficiency level and are moreinclined to make grammar errors."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Their expressions couldbe corrupted by the noise in the form of interference fromtheir first-language background and therefore containserror patterns dissimilar to that in essays of nativespeakers."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Building a system that automatically correctsgrammar errors for English learners becomes increasinglynecessary, which could be applied in many scenarios, suchas when people are writing essays, papers, statements,news and emails."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In this situation, researches aboutdeveloping grammar error correction systems havereceived more and more attention and much progress hasbeen achieved"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Grammar error correction (GEC) aims forautomatically correcting various types of errors in thegiven text."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Errors that violate rules of English andexpectation usage of English native speakers inmorphological, lexical, syntactic and semantic forms areall treated as target to be corrected."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Most of GEC systemsreceive a raw, ungrammatical sentence as input, andreturn a refined, correct sentence as output."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "A typicalinstance is shown in Figure 1.1."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The 2000s is the prior stage for GEC."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In this stage,most of GEC systems are based on hand-craft rulesincorporating usage of parsers and linguisticcharacteristics, for example, the Language Tool [1] andthe ESL Assistant [2]."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, the complexity ofdesigning rules and solving conflicts among the rulesrequire a great magnitude of labour."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Although some GECworks today still use rules as an additional source ofcorrection, the performance of rule based GEC systemshas been superseded by data-driven approaches, which arethe focus of our survey."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Remarkable progress has been achieved in GEC bydata-driven approaches."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In late 2000s, classification basedapproaches are developed to correct preposition errorsand article errors."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In this approach, classifiers are trainedon large magnitude of native error-free text to predict thecorrect target word, taking account into the linguisticfeatures given by context."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, GEC systems that arecapable of correcting all types of errors are moredesirable."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "As an improvement, statistical machinetranslation (SMT) based GEC systems have gainedsignificant attention in the early 2010s."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In this approach,SMT models are trained on parallel sentence pairs,correcting all types of errors by \u201ctranslating\u201d theungrammatical sentences into refined output."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Morerecently, with the increasing popularity of deep learning,neural machine translation (NMT) based GEC systemsapplying neural seq2seq models become dominant andachieve the state-of-the-art performance."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Since MT basedtranslation approaches require corpus containing largeparallel sentence pairs, language model based GECapproaches have been researched as an alternative thatdoes not rely on supervised training."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "W e give each of thedata-driven approaches in Section 3 in detail."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Beyond the four basic approaches, numeroustechniques have also attracted significant attention inorder to facilitate the GEC system to achieve betteroverall performance, especially in SMT and NMT basedGEC systems."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Since GEC is an area that stresses theappropriate application of basic model, the techniques areimportant to adapt the existing models to GEC."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Thesetechniques have been explored and developedincrementally to provide assistance and could becombined to further improve the error correction abilityof GEC systems."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In our survey, we describe the researchesabout GEC techniques and their broad application inexisting works."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Data augmentation methods are also of great essenceto development of GEC."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The lack of large amounts ofpublic training sentence pairs refrains the development ofmore powerful MT based GEC systems."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This problemcould be partly ameliorated by the proposal of variousdata augmentation methods, which generate artificialparallel data for training GEC models."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Some inject noiseinto error-free texts for corruption, while others applyback translation on error-free texts to translate them intoungrammatical counterparts."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Both methods are commonlyapplied in today\u2019s GEC systems."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Apart from the aforementioned components of GECsystems, we also cover other aspects of the GEC task."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "W esummarize the statistics and properties of several publicGEC datasets, briefly discuss the researches about dataannotation schema, and introduce two GEC shared tasks,which are critical to the development of GEC."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Besides,standard evaluation provides a platform where multipleGEC systems could be compared and analysedquantitatively."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The evaluation metrics, including bothreference-based and reference-less, are explained andcompared."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "GEC has always been a challenging task in NLPresearch community."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "First, due to the unrestrictedmutability of language, it is hard to design a model that iscapable of correcting all possible errors made by nonnative learners, especially when error patterns in new textare not observed in training data."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Second, unlike machinetranslation where annotated training resources areabundant, a large amount of annotated ungrammaticaltexts and their corrected counterparts are not available,adding difficulties to training MT based GEC models.Although data augmentation methods are proposed toalleviate the problem, however, if the artificiallygenerated data cannot precisely capture the errordistribution in real erroneous data, the final performanceof GEC systems will be impaired."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "W e provide a comprehensive literature retrospectiveon the research of GEC."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The overall categorization of theresearch is visualized in Figure 2"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Our survey makes the following contributions."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "W e present the first comprehensive survey in GEC.To the best of our knowledge, no prior work focuseson the overall survey in all aspects of datasets,approaches, performance boosting techniques, dataaugmentation methods and evaluation of the greatmagnitude of researches in GEC, especially theexplorations in recent years that yield significantprogress."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "W e explicitly separate the elements belonging to theapproaches, performance boosting techniques anddata augmentation and put them together for a more structured description of GEC works."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Due to thenature of GEC, this is more beneficial for followingworks based on the incorporation and application ofdisparate approaches, techniques and dataaugmentation methods."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "W e make a recapitulation of current progress andpresent an analysis based on empirical results inaspects of the approaches, performance boostingtechniques and integrated GEC systems for a moreclear pattern of existing literatures in GEC."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "W e propose five prospective directions for GEC inaspects of adapting GEC to native language ofEnglish learners, low-resource scenario GEC,combination of multiple GEC systems, datasets andbetter evaluation based on the existing works andprogress."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The rest of this survey is organized as follows."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "InSection 2, we introduce the public GEC corpora and theannotation schema."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Section 3 summarizes the commonlyadopted data-driven GEC approaches."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "W e classify thenumerous techniques in Section 4 and collect dataaugmentation methods in Section 5."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The standardevaluation metrics and discussion of GEC systems are inSection 6."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In Section 7, we propose the prospectivedirections and conclude the survey in Section 8."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "PRO BLEM",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In this section, we introduce the fundamental concepts ofGEC and their notations in the survey, the public datasets,the annotation schema of data and the shared tasks inGEC."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Notation and Definition",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Since GEC is an area of application of disparate theoriesand models, we focus only on the universal concepts thatare shared among the most GEC systems."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Given a source sentence \ud835\udc65 = {\ud835\udc651, \ud835\udc652, \u2026 , \ud835\udc65\ud835\udc47\ud835\udc65} whichcontains grammar errors, a GEC system learns to map xto its corresponding target sentence \ud835\udc66 = {\ud835\udc661, \ud835\udc662, \u2026 , \ud835\udc66\ud835\udc47\ud835\udc66}which is error-free."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The output of the GEC system iscalled hypothesis \ud835\udc66\u0302 = {\ud835\udc66\u03021, \ud835\udc66\u03022, \u2026 , \ud835\udc66\u0302\ud835\udc47\ud835\udc66\u0302}."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Datasets"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "2.2 Datasets",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "W e first introduce several datasets that are most widelyused to develop GEC systems based on supervisedapproach, including NUCLE [3], Lang-8 [4], FCE [5],J FLEG [6], W rite&Improve+LOCNESS [7]."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Thesedatasets contain parallel sentence pairs that are used todevelop MT based systems."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Statistics and more propertiesof these datasets are listed in Table 1."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Then, we alsodescribe some commonly used monolingual corpora."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The NUS Corpus of Learner English (NUCLE) is the firstGEC dataset that is freely available for research purposes.NUCLE consists of 1414 essays written by Asianundergraduate students at the National University ofSingapore."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This leads to low diversity of topic, sentenceproficiency and L1 (the first language of writer) of thedata."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Most tokens in NUCLE are grammatically correct,resulting 46,597 annotated errors for 1,220,257 tokens.NUCLE is also annotated with error types."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The First Certificate in English Corpus (FCE) is a portionof proprietary Cambridge Learner Corpus (CLC) [8], andit is a collection of 1244 scripts written by Englishlanguage learners in respond to FCE exam questions."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "FCEcontains broader native languages of writers, and morediverse sentence proficiency and topic."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Similar to NUCLE,FCE is also annotated with error types."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, FCE isannotated by only 1 annotator, which may lead to fewerusages than NUCLE."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The Lang-8 Corpus of Learner English (Lang-8) is asomewhat-clean, English subsection of a social languagelearning website where essays are posted by languagelearners and corrected by native speakers."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "AlthoughLang-8 contains the maximal amount of original sentences,it is corrected by users with different English proficiency,weakening the quality of the data."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Besides, it is notannotated with error types"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The J HU FLuency-Extended GUG Corpus (J FLEG)contains 1511 sentences in GUG development and test set.Unlike NUCLE and FCE, annotation of J FLEG involvesnot only grammar error correction but also sentence-levelrewrite to make source sentence sound more fluent."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Eachsentence is annotated four times on Amazon MechanicalTurk."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "J FLEG provides new perspective that GEC shouldmake fluency edits to source sentences."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "W rite&Improve Corpus (W&I) and LOCNESS Corpusare recently introduced by The BEA-2019 Shared Taskon Grammatical Error Correction."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "W&I consists of 3600annotated essay submissions from W rite&Improve [9], anonline web platform that assists non-native Englishstudents with their writing."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The 3600 submissions aredistributed in train set, development set and test set with3000, 300 and 300 respectively."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "LOCNESS Corpus is acollection of about 400 essays written by British andAmerican undergraduates, thus it contains only nativegrammatical errors."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Note that LOCNESS contains onlydevelopment set and test set."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "All the sentences in W&Iand LOCNESS are evenly distributed at each CERF level."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Except for the parallel datasets discussed above, there arealso some public monolingual corpora that can be used intraining language models, pre-training neural GECmodels and generating artificial training data."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Thecommonly used monolingual corpora are listed below.Wikipedia is an online encyclopediabased on Wiki technology, written in multiplelanguages with more than 47 million pages."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The Simple English Wikipedia,compared to ordinary English Wikipedia, onlyuses around 1500 common English words, which makes information much easier tounderstand both in grammar and structure."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The English Gigaword Corpus iscollected by the Linguistic Data Consortium atthe University of Pennsylvania, consisting ofcomprehensive news text data (including textfrom Xinhua News Agency, New York Times,etc.)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The One BillionWord Benchmark is a corpus with more thanone billion words of training data, aiming formeasuring research progress."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Since the trainingdata is from the web, different techniques canbe compared fairly on it."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The Corpus of Contemporary AmericanEnglish is the largest genre-balanced corpus,containing more than 560 million words,covering different gen-res including spoken,fiction, newspapers, popular magazines andacademic journals."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The Common Crawl corpus[10] is a repository of web crawl data which isopen to everyone."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It completes crawls monthlysince 2011."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The English Vocabulary Profile is anonline extensive research based on CLC,providing information, including examplesentences of words and phrases for learners ateach CERF level.l."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In this section, we talk about the annotation of GEC data,including researches about annotation schema and interannotator agreement."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Although annotation requires agreat magnitude of labor and time, it is of greatimportance to the development of GEC."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Data-drivenapproaches rely heavily on annotated data."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Mostimportantly, it enables comparable and quantitativeevaluation of different GEC systems when they areevaluated on data with standard annotation."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For example,systems in the CoNLL-2014 and the BEA-2019 sharedtasks are evaluated on data with official annotation, andthey are ranked according to scores using identicalevaluation metrics respectively."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Besides, it also promotestargeted evaluation and strength of GEC systems, sinceerror types may be annotated in data."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "W e can examinethe performances of GEC systems on specific error typesto identify their strength and weakness."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This is meaningfulsince a robust specialised system is more desirable than amediocre general system [11]."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "The most widely applied annotation is error-coded.Error-coded annotation involves identifying (1) the spanof grammatical erroneous context (2) error type and (3)",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "corresponding correction."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Many error-coded annotationschemas are applied, but M2 format is most commonlyused error-coded annotation format today."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "M2 format canmerge an-notations from multiple annotators, as shown inFigure 3."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Error-coded annotation has some disadvantages."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "First,different corpora classify error types with significantdiscrepancy."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "As mentioned above, error types in FCE aredistinguished into 80 categories, while in NUCLE aredistinguished into only 27 categories."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Besides, annotationmay vary with different annotators due to their differentlinguistic background and proficiency, resulting into lowinter-annotator agreement (IAA) [12], [13]."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Non-errorcoded fluent edits which treat correcting sentence aswhole-sentence fluency boosting rewriting may be moredesirable [14]."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "There are also many researches on inter-annotatoragreement and annotation bias."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Annotation bias is a trickyproblem in GEC that different annotators show biastowards specific error type and multiple corrections.However, annotation bias can be partly overcame byincreasing the number of annotators [15], [16]."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It is alsodemonstrated that by taking increasing number ofannotation as golden standard, system performance alsoimproves [17]."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Shared Tasks",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The shared tasks of GEC have made great contribution tothe development of GEC researches."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Participating teamsare encouraged to submit their error correction systemsfor higher testing scores, during which many advances,especially in techniques, have been made."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "While theHOO-2011 [18], HOO-2012 [19], CoNLL-2013 [20]shared tasks focus on several specific error types, teamsparticipated in the CoNLL-2014 [21] and BEA-2019 [7]shared tasks are required to correct all types of errors.W e briefly discuss CoNLL-2014 and BEA-2019 sharedtask below."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The adopted evaluation metrics in the twotasks are discussed in Section 6."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The CoNLL-2014 shared task is the first GEC shared taskthat aims at correcting all types of errors, which is dividedinto 28 classifications."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The training set is processedNUCLE dataset, while the test set is composed of 50essays written by non-native English students."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The testdata is annotated by 2 experts, and 8 more annotationsare released afterwards [17]."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The official evaluationmetric is \ud835\udc402\ud835\udc390.5score."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It is worthy to mention thatCoNLL-2014 test set is the most widely used benchmarktest set in today\u2019s GEC researches."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The BEA-2019 shared task reevaluates the moredeveloped and various GEC systems in a unified condition5 years after the CoNLL-2014."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "One contribution of thistask is the introduction of a new parallel GEC datasetW &I+LOCNESS."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "ERRANT is used to standardize theedits in several corpora and classify the errors into 25categories."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The test set of W&I+LOCNESS consists of4477 sentences."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "System outputs are evaluated inERRANT \ud835\udc390.5score."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "There are 3 tracks in the BEA-2019shared task."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In the restricted task, participants can onlyuse NUCLE, FCE, Lang-8 and W &I+LOCNESS asannotated training source, but the monolingual corpus isnot restricted."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In the unrestricted track, participants canuse private datasets or external resources to build theirGEC systems."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In low-resource track, participants can onlyuse W&I+LOCNESS."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "APP ROACH ES",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In this section, we survey the basic data-drivenapproaches used to tackle GEC problems, including SMTbased approaches, NMT based approaches, classificationbased approaches and LM based approaches."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "W e dividethis section in several branches to clarify the developmentof various GEC approaches individually, and each branchincludes more details about the representative works."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Before resorting to SMT, grammatical error correctionswere mainly achieved by rule based or classification basedmethods, the limitations of which are obvious."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "On the onehand, designing rules often requires a large amount ofprior linguistic information and expert knowledge."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Theprogress of designing rules is time-consuming and thelinguistic resources do not appear to be available all thetime, especially for some minority languages that arespoken by only a few people."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "At the same time, an onefor-all rule is almost non-existent, because the naturallanguage itself is so flexible that makes it difficult forrules to effectively deal with all possible exceptions."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Onthe other hand, the flexibility of natural language alsorestraints classification based methods to achieve considerable results under a more extensive scene. The preset labels limit the classification method to certain types of errors and cannot be extended to deal with more complicated error types. For GEC, generally speaking, the errors appeared often involve not only the wrong words themselves, but also the context which may contain the surrounding tokens in a sentence or even cross sentence information. Further, the choice of correction is also diverse and flexible, which promotes the development of generative model on GEC. In this section, we present SMT based models and its development on grammatical error correction. Since most current researchers focus on models based on neural machine translation, we do not discuss too many particulars of models and methods in detail here."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Machine translation aims to find a translation \ud835\udc66 in targetlanguage for a given source sentence x in the sourcelanguage, which probabilistically finds a sentence y thatmaximize \ud835\udc5d(\ud835\udc66|\ud835\udc65) ."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The distribution \ud835\udc5d(\ud835\udc66|\ud835\udc65) is thetranslation model we want to estimate."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Often, thetranslation model consists of two parts, the translationprobability \u03a0\ud835\udc56=1\ud835\udc3c \ud835\udc5d(\ud835\udc62\ud835\udc56|\ud835\udc63\ud835\udc56) of the all \u201cunits\u201d in a sentencewith \ud835\udc48 units and the reordering probability\u03a0\ud835\udc56=1\ud835\udc48 \ud835\udc51(\ud835\udc60\ud835\udc61\ud835\udc4e\ud835\udc5f\ud835\udc61\ud835\udc56 \u2212 \ud835\udc52\ud835\udc5b\ud835\udc51\ud835\udc56\u22121 \u2212 1), which are used as the basisfor translation in different models:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "where \ud835\udc62\ud835\udc56 and \ud835\udc63\ud835\udc56represent the basic \u201cunits\u201d in target andsource sentence respectively."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Similarly, \ud835\udc60\ud835\udc61\ud835\udc4e\ud835\udc5f\ud835\udc61\ud835\udc56 and \ud835\udc52\ud835\udc5b\ud835\udc51\ud835\udc56represent the positions of the first and last token insidethe \ud835\udc56-th unit in the sentence."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The contents of \u201cunits\u201ddepend on the specific model people selected."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The wordbased translation model uses words as the basic unit, whilethe phrase-based model uses phrases as the basic unit, andcorrespondingly, the tree-based method establishes theprobability of mapping subtrees between the sourcelanguage syntax tree and the target language syntax tree.Using Bayes\u2019 formula, we can transform the aboveformula into the noisy channel model:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In this model, it is noted that in addition to an invertedtranslation model, it also includes a language model \ud835\udc5d(\ud835\udc66)on the target side."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "By adding a language model, thefluency of the output sentence can be scored and improved.These two models are independent, and training alanguage model does not require parallel corpora."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Amonolingual corpus with a large amount of targetlanguage can obtain a good language model."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Theintroduction of the noise channel model allows us to firsttrain the language model and the translation modelseparately and then uses the above formula to combine the two models."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This idea is better reflected on the log-linearmodel, which generalizes it with the following equation:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Compared to the noise channel model, the log-linearmodel provides a more general framework."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Thisframework contains a variable number of sub-models,namely the feature functions \ud835\udc53\ud835\udc5a = (\ud835\udc65, \ud835\udc66), which could befeatures such as translation model or language model, anda group of tunable weight parameters \ud835\udf06\ud835\udc5a, which are usedto adjust the effect of each sub-model in the translationprocess."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Also, the total number of feature functions isrepresented as \ud835\udc40 ."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "W ith the log-linear model, priorknowledge and semantic information are possible to beinjected by adding feature functions."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "SMT based methods treat GEC as the translationprocess from the \u201cbad English\u201d to \u201cgood English\u201d.Through training on a large number of parallel corpora,the translation model can collect the correspondingbetween the grammar error and its correct form, just asin the translation process does in mapping bilingualsentences."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Several researches have used statisticalmachine translation models as the basic framework forGEC, and taken the advantage of the versatility andflexibility provided by log-linear models with considerableresult achieved."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The pilot study using SMT for grammatical errorcorrection focused on correcting countability errors ofmass noun [22]."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "A dependency treelet-based SMT modelhas been employed with artificially constructed parallelcorpus as a result of the lack of parallel data required bySMT."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "By testing at the web-crawled CLEC dataset, theirmodel achieved 61.52% accuracy in correcting mass nounerrors and show the promising application of SMT, underthe assistance of parallel GEC data, to solve more generalerrors."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Later, the potential competence of SMT basedmethods were further explored on unrestricted errortypes [23], [24] through large-scale error corrected datafrom Lang-8."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Also, in the CoNLL-2013 and CoNLL-2014shared tasks, several SMT based approaches have beenemployed as significant roles in those top systems [25],[26], [27], [28] with considerable performance achieved.Among those works, task-specific features and web-scalelanguage models were incorporated into standard SMTmodels [27], [28] and with appropriate tuning approach,their systems ranked first and third respectively on theCoNLL-2014 test set."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "W ork [29] after those shared tasks also demonstratedthe effectiveness of systems utilizing SMT by constructinga hybrid system that combines the outputs of both theSMT components and the classification approach."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In thisresearch, four systems (two SMT based systems and twoclassification based systems respectively) are combined using MEMT [30] and the final system achieves a stateof-the-art result."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Another commonly used feature which isbased on neural networks was first integrated in SMTbased GEC system in more recent studies [31], both aneural network joint model (NNJ M) and a neuralnetwork global lexical model (NNGLM) are introducedinto the SMT based GEC models."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The NNJ M is furtherimproved using the regularized adaptive training methoddescribed in later work [32] on a higher quality trainingdataset, which has a higher error per-sentence ratio."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "A group of studies [33], [34], [35] paid more attentionto n-best list reranking to solve the \u201c first but not the best\u201dproblem in the outputs of previous SMT based GECsystems."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "An extra rescoring post-processing also enabledmore information to be incorporated into the SMT basedmethods, through which improvement based on theprevious systems has been acquired."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Empirical study [36]concerning distinguished approaches has compared theSMT and classification based approaches by performingerror analysis of outputs, which also promoted a soundpipeline system using classification based error typespecific components, a context sensitive spellingcorrection system, punctuation and casing correctionsystems, and SMT."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Also, system based on SMT only [37] described a baseline GEC system using task-specificfeatures, better language models, and task specific tuningof the SMT system, which outperformed previous GECmodels."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Later research [38] further incorporated both theNNJ M and a character-level SMT for spelling check intothe baseline SMT based model and has shown theefficiency of their methods with an increase in the finalperformance."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "As the increasing development of the neuralbased methods in both the MT and GEC, the moreeffective interaction of those methods has been researched[39] based on their comparison between SMT and NMT,also hybrid models were proposed with higher testingscore."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Although the widely used SMT tools Moses [40] hadcontained dense and sparse features tuning towards BLEU,which was apparently under the machine translationsetting, the direct exploitation of those methods seemedto be inappropriate [37]."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Early in the CoNLL-2014 sharedtask, several methods [27],[28] which focused on the taskspecific features have been proposed tailored theparticularity of grammatical error correction."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Systemsusing character-level Levenshtein distance as densefeatures [27], [33] and research investigating both specificdense and sparse features [28] all have demonstrated theimprovement in the performance of SMT basedapproaches."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Better interaction of dense features andsparse features were scrutinized in their later research[37], which cultivated a strong baseline SMT model."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Herewe survey the commonly used GEC-specific features thatmay offer an improvement to an SMT based model inGEC."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Levenshtein distance."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Both character-levelLevenshtein distance and word-level Levenshtein havebeen used as dense features."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Through the distance, therelation between target and source sentence could bemodeled, especially the edit operations, which mainlyreflect the correction patterns, are captured"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Edit operation counts."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Similar but a more refined anddetailed version of Levenshtein distance feature is editoperation counts."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Based on the Levenshtein distancematrix, the numbers of deletions, insertions, andsubstitutions that transform the source phrase into thetarget phrase are computed, noticeably the sum ofthese counts is equal to the original Levenshteindistance."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Operation Sequence Model (OSM)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "OperationSequence Model is introduced into Moses formachine translation [41]."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "These models are Markovtranslation models that in GEC setting can beinterpreted as Markov edition models."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Translationsbetween identical words are matches, translations thathave different words on source and target sides aresubstitutions; insertions and deletions are interpretedin the same way as for SMT."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "W ord-class language model (W CLM)."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The injectionof word-class information has shown theircontribution in the machine translation task earlyfrom the IBM series of model."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "A more general usedmethod used monolingual W ikipedia data to create a9-gram word-class language model with 200 wordclasses produced by word2vec [42]."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "These featuresallow to capture possible long distance dependenciesand semantical aspects in the SMT based model"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Sparse features."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "More fine-grained features can beextracted from the Levenshtein distance matrix as specificerror correction operation types with or without context,by counting specific edits that are annotated with thesource and target tokens that take part in the edit."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": " W eb-scale Language ModelsAs demonstrated in equation 2 and 3, a target sidelanguage model \ud835\udc5d(\ud835\udc66) is already included in the noisychannel model or the more general log-linear model.However, the size of data when extracting the target sideof training sets is so limited that additional web-scalelanguage models are often trained on the largemonolingual (local error-free) datasets."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The monolingual corpus could be W ikipedia [29], [28], [32], [35], [31], [36],Gigaword [26], [34] and Common Crawl [28], [37], [38],[39]."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Such LMs have been trained though tools such asKenLM or IRSTLM in a range of researches to furtherprompt the improvement of their systems\u2019 performance."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Although the translation model of SMT based approacheshas shown the effectiveness by estimating phrase table, thediscrete phrase table and the linear mapping on whichtranslation probability based still limited the competent ofmodel to generalize more to pattern beyond the trainingsets."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Also, the global information was always ignored bythe basic SMT based model."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Although a range of languagemodels and other sequence modeling features have beenincorporated in several SMT based GEC models, contextinformation concerning each word was lacked."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Someworks tackled these limitations using complementaryneural networks as additional features, namely neuralnetwork global lexicon model (NNGLM) and neuralnetwork joint model (NNJ M), which construct continuousrepresentation space with non-linear mapping modeled[32], [31], [38]."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "NNGLM."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "A global lexicon model here is a feed forwardneural network used to predict the presence of words inthe corrected output by estimating the overall probabilityof hypothesis given the source sentence."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The probabilityof a target hypothesis is computed using the followingequation:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "where \ud835\udc5d(\ud835\udc66\u0302\ud835\udc56|\ud835\udc65) is the probability of the target word \ud835\udc66\u0302\ud835\udc56given the source sentence \ud835\udc65; \ud835\udc5d(\ud835\udc66\u0302\ud835\udc56|\ud835\udc65) is the output of theneural network."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "NNJM."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "J oint models in translation augment thecontext information in language models with words fromthe source sentence."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Unlike the global lexicon model,NNJ M uses a fixed window from the source side andtakes sequence information of words into consideration inorder to estimate the probability of the target word."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Theprobability of the hypothesis \u210e given the source sentence\ud835\udc65 is estimated by the following equation:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "where \ud835\udc50\ud835\udc56is the context (history) for the target word \ud835\udc66\u0302\ud835\udc56.The context \ud835\udc50\ud835\udc56 consists of a set of source wordscentralized by word \ud835\udc66\u0302\ud835\udc56 and certain number of wordspreceding \ud835\udc66\u0302\ud835\udc56from the target sentence same as thelanguage model does"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "NMT Based Approaches",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "manyresearches start to research NMT based approaches forGEC."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "W ith the increasing performances obtained byneural encoder-decoder models [43] in machinetranslation, neural encoder-decoder based models areadopted and modified."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Compared to SMT based GECsystems, NMT based models have two advantages."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "First,neural encoder-decoder model learns the mappings fromsource to target directly from training parallel data,rather than the required features in SMT to capture themapping regularities."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Second, NMT based systems ar eable to correct unseen ungrammatical phrases andsentences more effectively than SMT based approaches,increasing the generalization ability [44]."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In this section, we trace the development ofrepresentative works, which are the most commonly usedas backbones combining with other techniques in GECsystems today."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "W e leave the numerous techniques toSection 4, and focus only on works researching the designand training schema of neural models in GEC."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "As we willdiscuss, all the neural GEC systems are based on theencoder-decoder (ED) model, with an exception based onthe parallel iterative edit (PIE) model."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Yuan and Briscoe first applied NMT based models in GEC[45]."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In this work, the encoder encodes the sourcesentence \ud835\udc65 = {\ud835\udc651, \ud835\udc652, \u2026 , \ud835\udc65\ud835\udc47\ud835\udc65} as a vector \ud835\udc63 ."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Then, thevector is passed to the decoder to generate the correction\ud835\udc66 through"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "e:MX9C-Mhd<Qq4Zm2YXK"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "each time step, the target word is predicted with thevector and the previously generated words."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Both theencoder and the decoder are RNNs composing of GRUor LSTM units.Attention mechanism [46] is always applied to improvethe output in each decoding step \ud835\udc56 by selectively focusingon the most relevant context \ud835\udc50\ud835\udc56in the source."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "To be morespecific, the hidden state in decoder is calculated by"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "where \ud835\udc60\ud835\udc56\u22121is the hidden state last step; \ud835\udc66\ud835\udc56\u22121is the wordgenerated last step; \ud835\udc53(\u00b7) is non-linear function."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Thevariable \ud835\udc50\ud835\udc56is calculated aswhere \u210e\ud835\udc57is the hidden state of encoder at step \ud835\udc57 and \ud835\udefc\ud835\udc56\ud835\udc57is calculated asThe variable \ud835\udc5a\ud835\udc56\ud835\udc58 is a match score between \ud835\udc60\ud835\udc56\u22121 and \u210e\ufffdXie et al."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "firstly applied the first character-level neuralencoder-decoder model for GEC [47]."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Since operating atcharacter-level increases the recurrent steps in RNN, apyramid architecture [48] is applied to reducecomputational complexity and the encoded representationof the input is obtained at the final hidden layer of thepyramid architecture."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The decoder is attention-based andalso has the pyramid architecture to reduce thecalculation relating to attention mechanism."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Combining word-level NMT model and character-levelNMT model, a hybrid NMT based GEC model with nestedattention is proposed [49]."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In this hybrid architecture,words that are in target vocabulary are generated byword-level decoder, while those who are out of targetvocabulary are generated by character-level decoder.During each decoding step, the probability of each tokenis the product of probability of unknown words (UNKs)calculated by softmax function of word-level decoder \ud835\udc5d,and the probability of the character sequence in a tokengenerated by the character-level decoder."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "To be morespecific, the character-level decoder will select a sourceword \ud835\udc65\ud835\udc67\ud835\udc60according towhere \ud835\udefc\ud835\udc60\ud835\udc58 is calculated by word-level attention."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "If thesource word \ud835\udc65\ud835\udc67\ud835\udc60is in source word vocabulary, then thecharacter-level decoder initializes the initial hidden stateusing \u210e\u0302\ud835\udc61 = \ud835\udc45\ud835\udc52\ud835\udc3f\ud835\udc48(\ud835\udc4a\u0302 [\ud835\udc50\ud835\udc60; \u210e\ud835\udc60]), where \u210e\ud835\udc60is the hidden stateof word-level decoder."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, if the source word \ud835\udc65\ud835\udc67\ud835\udc60isout of source word vocabulary, then a nested attention isapplied to make character-level decoder attend to \ud835\udc65\ud835\udc67\ud835\udc60."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Bydirectly providing the decoder with access to thecharacter sequence in the source word, out-of-vocabulary(OOV) problem could be better addressed in GEC."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Besides the widely applied RNN based NMT model[45], [47], [49], [39], the first CNN based NMT model onGEC became the first NMT based GEC systemsoutperforming SMT based GEC systems [50]."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "A multilayer convolutional architecture [51] is designed and CNNbased attention for sequence-to-sequence learning isapplied."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In each encoder layer, the source sentence isfirstly embedded using word embedding and positionembedding as \ud835\udc46 \u2208 \u211d\u210e\u00d7|\ud835\udc46|, where |\ud835\udc46| is the number oftokens in the source sentence, and then linearlytransformed into \ud835\udc3b0 \u2208 \u211d\u210e\u00d7|\ud835\udc46| before it is fed into the firstencoder layer."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The output of the \ud835\udc59th encoder layer iscalculated as follow:"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

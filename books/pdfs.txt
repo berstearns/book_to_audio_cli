@@ -1,0 +1,16 @@
+#api-design-patterns
+#software-architecture-patterns-for-serverless-systems
+fundamentals-of-software-architecture-an-engineering-approach
+software-architecture-the-hard-parts-modern-trade-off-analyses-for-distributed-architectures
+serverless-architectures-with-kubernetes-create-production-ready-kubernetes-clusters-and-run-serverless-applications-on-them
+test-driven-development-with-python-obey-the-testing-goat-using-django-selenium-and-javascript
+learning-test-driven-development-a-polyglot-guide-to-writing-uncluttered-code
+patterns-principles-and-practices-of-domain-driven-design
+kubernetes-and-docker-an-enterprise-guide-effectively-containerize-applications-integrate-enterprise-systems-and-scale-applications-in-your-enterprise
+domain-driven-design-distilled
+learning-domain-driven-design-aligning-software-architecture-and-business-strategy
+crafting-test-driven-software-with-python_-write-test-suites-that-scale-with-your-applications-needs-and-complexity-using-python-and-pytest
+#architecture-patterns-with-python
+design-patterns-in-python-common-gof-design-patterns-implemented-in-python
+modern-python-cookbook-133-recipes-to-develop-flawless-and-expressive-programs-in-python-3.8
+python-object-oriented-programming-build-robust-and-maintainable-object-oriented-python-applications-and-libraries

@@ -1,0 +1,275 @@
+# Preface 1
+# Section 1 - Starting Off with BERT
+Chapter 1 A Primer on Transformers	6
+#Introduction to the transformer 6
+#Understanding the encoder of the transformer 8
+#Self-attention mechanism 10
+#Understanding the self-attention mechanism 13
+#Step 1 14
+#Step 2 16
+#Step 3 17
+#Step 4 18
+#Multi-head attention mechanism 21
+#Learning position with positional encoding 23
+#Feedforward network 27
+#Add and norm component 28
+#Putting all the encoder components together 29
+#Understanding the decoder of a transformer 30
+#Masked multi-head attention 35
+#Multi-head attention 41
+#Feedforward network 46
+#Add and norm component 46
+#Linear and softmax layers 47
+#Putting all the decoder components together 48
+#Putting the encoder and decoder together 50
+#Training the transformer 51
+#Summary 51
+#Questions 52
+#Further reading 52
+Chapter 2 Understanding the BERT Model	53
+#Basic idea of BERT 53
+#Working of BERT 55
+#Configurations of BERT 57
+#BERT-base 58
+#BERT-large 58
+#Other configurations of BERT 59
+#Pre-training the BERT model 60
+#Input data representation 61
+#Token embedding 61
+#Segment embedding 62
+#Position embedding 63
+#Final representation 64
+#WordPiece tokenizer 65
+#Pre-training strategies 66
+##Language modeling 66
+#Auto-regressive language modeling 66
+#Auto-encoding language modeling 67
+##Masked language modeling 68
+#Whole word masking 71
+#Next sentence prediction 72
+#Pre-training procedure 76
+#Subword tokenization algorithms 78
+#Byte pair encoding 80
+#Tokenizing with BPE 85
+#Byte-level byte pair encoding 86
+#WordPiece 87
+#Summary 89
+#Questions 89
+#Further reading 90
+Chapter 3 Getting Hands-On with BERT	91
+#Exploring the pre-trained BERT model 92
+#Extracting embeddings from pre-trained BERT 93
+#Hugging Face transformers 96
+#Generating BERT embeddings 97
+#Preprocessing the input 97
+#Getting the embedding 99
+#Extracting embeddings from all encoder layers of BERT 100
+##Extracting the embeddings 102
+#Preprocessing the input 102
+#Getting the embeddings 103
+#Fine-tuning BERT for downstream tasks 105
+#Text classification 106
+#Fine-tuning BERT for sentiment analysis 107
+#Importing the dependencies 108
+#Loading the model and dataset 108
+#Preprocessing the dataset 109
+##Training the model 111
+#Natural language inference 112
+#Question-answering 115
+#Performing question-answering with fine-tuned BERT 118
+#Preprocessing the input 118
+#Getting the answer 119
+#Named entity recognition 119
+#Summary 121
+#Questions 121
+#Further reading 121
+#Section 2 - Exploring BERT Variants
+Chapter 4 BERT Variants I - ALBERT, RoBERTa, ELECTRA, and SpanBERT	123
+#A Lite version of BERT 124
+#Cross-layer parameter sharing 124
+#Factorized embedding parameterization 126
+#Training the ALBERT model 127
+#Sentence order prediction 128
+#Comparing ALBERT with BERT 128
+#Extracting embeddings with ALBERT 129
+#Robustly Optimized BERT pre-training Approach 131
+#Using dynamic masking instead of static masking 131
+#Removing the NSP task 133
+#Training with more data points 134
+#Training with a large batch size 134
+#Using BBPE as a tokenizer 135
+#Exploring the RoBERTa tokenizer 135
+#Understanding ELECTRA 137
+#Understanding the replaced token detection task 137
+#Exploring the generator and discriminator of ELECTRA 140
+#Training the ELECTRA model 144
+#Exploring efficient training methods 145
+#Predicting span with SpanBERT 146
+#Understanding the architecture of SpanBERT 146
+#Exploring SpanBERT 149
+#Performing Q&As with pre-trained SpanBERT 150
+#Summary 151
+#Questions 151
+#Further reading 152
+Chapter 5 BERT Variants II - Based on Knowledge Distillation	153
+#Introducing knowledge distillation 154
+#Training the student network 157
+#DistilBERT – the distilled version of BERT 160
+#Teacher-student architecture 160
+#The teacher BERT 161
+#The student BERT 162
+#Training the student BERT (DistilBERT) 162
+#Introducing TinyBERT 164
+#Teacher-student architecture 166
+#Understanding the teacher BERT 167
+#Understanding the student BERT 167
+#Distillation in TinyBERT 168
+#Transformer layer distillation 169
+#Attention-based distillation 170
+#Hidden state-based distillation 171
+#Embedding layer distillation 173
+#Prediction layer distillation 173
+#The final loss function 174
+#Training the student BERT (TinyBERT) 174
+#General distillation 175
+#Task-specific distillation 175
+#The data augmentation method 176
+#Transferring knowledge from BERT to neural networks 178
+#Teacher-student architecture 179
+#The teacher BERT 179
+#The student network 179
+#Training the student network 181
+#The data augmentation method 182
+#Understanding the masking method 182
+#Understanding the POS-guided word replacement method 182
+#Understanding the n-gram sampling method 183
+#The data augmentation procedure 183
+#Summary 184
+#Questions 184
+#Further reading 185
+#Section 3 - Applications of BERT
+Chapter 6 Exploring BERTSUM for Text Summarization	187
+# Text summarization 188
+# Extractive summarization 188
+# Abstractive summarization 189
+# Fine-tuning BERT for text summarization 190
+# Extractive summarization using BERT 190
+# BERTSUM with a classifier 195
+# BERTSUM with a transformer and LSTM 196
+# BERTSUM with an inter-sentence transformer 197
+# BERTSUM with LSTM 200
+# Abstractive summarization using BERT 201
+# Understanding ROUGE evaluation metrics 202
+# Understanding the ROUGE-N metric 203
+# ROUGE-1 203
+# ROUGE-2 204
+# Understanding ROUGE-L 205
+# The performance of the BERTSUM model 205
+# Training the BERTSUM model 206
+# Summary 208
+# Questions 209
+# Further reading 209
+Chapter 7 Applying BERT to Other Languages	210
+# Understanding multilingual BERT 211
+# Evaluating M-BERT on the NLI task 212
+# Zero-shot 214
+# TRANSLATE-TEST 215
+# TRANSLATE-TRAIN 215
+# TRANSLATE-TRAIN-ALL 215
+# How multilingual is multilingual BERT? 216
+# Effect of vocabulary overlap 216
+# Generalization across scripts 218
+# Generalization across typological features 218
+# Effect of language similarity 219
+# Effect of code switching and transliteration 220
+# Code switching 220
+# Transliteration 221
+# M-BERT on code switching and transliteration 221
+# The cross-lingual language model 223
+# Pre-training strategies 223
+# Causal language modeling 223
+# Masked language modeling 224
+# Translation language modeling 225
+# Pre-training the XLM model 226
+# Evaluation of XLM 227
+# Understanding XLM-R 228
+# Language-specific BERT 230
+# FlauBERT for French 230
+# Getting a representation of a French sentence with FlauBERT 231
+# French Language Understanding Evaluation 232
+# BETO for Spanish 233
+# Predicting masked words using BETO 234
+# BERTje for Dutch 235
+# Next sentence prediction with BERTje 236
+# German BERT 237
+# Chinese BERT 238
+# Japanese BERT 240
+# FinBERT for Finnish 240
+# UmBERTo for Italian 241
+# BERTimbau for Portuguese 242
+# RuBERT for Russian 243
+# Summary 245
+# Questions 245
+# Further reading 246
+Chapter 8 Exploring Sentence and Domain-Specific BERT	247
+# Learning about sentence representation with Sentence-BERT 248
+# Computing sentence representation 248
+# Understanding Sentence-BERT 250
+# Sentence-BERT with a Siamese network 251
+# Sentence-BERT for a sentence pair classification task 251
+# Sentence-BERT for a sentence pair regression task 253
+# Sentence-BERT with a triplet network 255
+# Exploring the sentence-transformers library 257
+# Computing sentence representation using Sentence-BERT 258
+# Computing sentence similarity 259
+# Loading custom models 260
+# Finding a similar sentence with Sentence-BERT 261
+# Learning multilingual embeddings through knowledge distillation 262
+# Teacher-student architecture 264
+# Using the multilingual model 266
+# Domain-specific BERT 267
+# ClinicalBERT 267
+# Pre-training ClinicalBERT 268
+# Fine-tuning ClinicalBERT 268
+# Extracting clinical word similarity 271
+# BioBERT 271
+# Pre-training the BioBERT model 272
+# Fine-tuning the BioBERT model 273
+# BioBERT for NER tasks 273
+# BioBERT for question answering 274
+# Summary 275
+# Questions 275
+# Further reading 276
+Chapter 9 Working with VideoBERT, BART, and More	277
+# Learning language and video representations with VideoBERT 278
+# Pre-training a VideoBERT model 278
+# Cloze task 278
+# Linguistic-visual alignment 281
+# The final pre-training objective 283
+# Data source and preprocessing 283
+# Applications of VideoBERT 284
+# Predicting the next visual tokens 284
+# Text-to-video generation 285
+# Video captioning 285
+# Understanding BART 286
+# Architecture of BART 286
+# Noising techniques 287
+# Token masking 288
+# Token deletion 288
+# Token infilling 289
+# Sentence shuffling 289
+# Document rotation 290
+# Comparing different pre-training objectives 290
+# Performing text summarization with BART 291
+# Exploring BERT libraries 292
+# Understanding ktrain 292
+# Sentiment analysis using ktrain 293
+# Building a document answering model 298
+# Document summarization 301
+# bert-as-service 302
+# Installing the library 302
+# Computing sentence representation 303
+# Computing contextual word representation 304
+# Summary 305
+# Questions 306
+# Further reading 306

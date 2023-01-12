@@ -1,0 +1,859 @@
+[
+    {
+        "type": "chapter",
+        "sections": [
+            {
+                "type": "section",
+                "title": "prototyping a real-world problem",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Everything you consider an innovation came to your attention because it had an impact."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Specifically, it solved a real-world problem."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "At first, postulating a real-world problem may seem as formidable a task as coming up with an earth-shattering idea."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, the problem does not have to be big; it just has to be real."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Indeed, the examples in chapter 1 suggest that all you need is a hunch about a problem."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "You\u2019ll refine the problem as you innovate."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "You\u2019ll innovate as you solve the problem."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The subtlety lies in ap- preciating that there is a pattern to how we think of real-world problems that have been solved and making it routine\u2014practicing\u2014to give your hunch the same structure."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "By the end of this chapter you should be able to persuade yourself that a hunch about a problem\u2014not yet a full-blown problem\u2014is the most uncom- plicated starting point for an innovation."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "You can start there repeatedly with- out fear of being wrong."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In fact, there is a fairly unassuming way to build a purpose from a hunch that will lead you to an increasingly well-defined problem."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "A hunch about a problem is a realization that there\u2019s something that\u2019s not quite right and that you suspect you can change."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The founders of Green- peace seem to have been driven by their perception that \u201cthe planet was in danger\u201d1 and that society needed to be made aware of that through action."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Your hunch may emerge from something in your daily life, from something in your work environment, from recurring conversations within your community, from something you wish were true, or from a particular prob- lem you experience that you suspect could go away if something else existed\u2014 possibly something you can\u2019t quite formulate yet."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "You ought to give that hunch the same structure problems have."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In fact, all you need is deceivingly contained in the statement \u201cevery innovation solves a problem.\u201d"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "That statement may feel like a circular reference\u2014a truism\u2014that will become trivially true at the end of your process."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "If you work backward from hindsight with some of the examples from chapter 1, you may appreciate that the problems those innovations solved are seldom defined directly."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Rather, they are defined indirectly: by a solution such as \u201cthe affordable car\u201d; by how a solution empowers the members of a community, such as the description of PCR as a means to \u201camplify a genetic signal\u201d; or by how an organization goes about verifying that it is indeed addressing the problem, such as \u201cGreen- peace ... uses non-violent, creative confrontation to expose global environ- mental problems, and to force the solutions which are essential to a green and peaceful future.\u201d2"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Using these stories for guidance, here is how it might play out for your eventual innovation: An organization (new or ex- isting) will serve the outcomes of your in- novating sustainably."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Let\u2019s call that your \u201coffering.\u201d You\u2019ll describe those outcomes as a solution that negates a problem."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "You\u2019ll likely illustrate a form of the problem, in- directly, by the benefits that emerge from adopting your offering."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "With guidance from your organization, the receivingcommunity will infer the specific instance of the problem your offering solves for them; the benefits of your offering will persuade others that the problem is indeed solved and that your solution creates value3 for them."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "And you\u2019ll see a rising number of players building from what you have to offer, some extending it, some copying it."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Coming up with an explicit problem statement is difficult, and, as these examples suggest, you may never need to have an explicit problem statementlike those common in engineering and mathematics."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Rather, your problem may be best illustrated by the benefits of your innovation and the organiza- tion that makes it happen."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Explicit problem statements are, as a matter of fact, an element of your story in hindsight."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "I have become convinced that it\u2019s impossible to define a problem explicitly in foresight."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The best we can do is define a problem indirectly, and that\u2019s why I\u2019m having you focus on a hunch."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Early on, however, before the opportunity for innovation is apparent, the need for specificity drives many of us to try to use various formalisms to de- scribe a problem."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "A common one is \u201cN people in place A cannot do X and need Y.\u201d Say, for instance, \u201c783 million people do not have access to clean water.\u201d4 That, in a way, is a prototype of the magnitude of the impact we hope a solution to some unstated problem will have, but it is not a problem description."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It isn\u2019t even really a problem."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It is, potentially, a statement of fact."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It can be a hunch."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We can, however, define the attributes of solved real-world problems."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Still looking at the stories in hindsight, the statement \u201cevery innovation solves a problem\u201d and the historical examples I\u2019ve overviewed imply three things about the kinds of problems innovations solve."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "They are:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "solvable: At least one solution to the problem exists, and probably more."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "recognizable: The problem, the solution, or what the solution must achieve can be made tangible."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "verifiable: There is a way to decide whether a solution indeed solves the problem."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In logic, the word decidable describes problems of this kind."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In the con- text of innovation, you may think of it this way: Eventually, there will be an organization that can follow a set of steps to serve a solution to the problem repeatedly and sustainably; the members of the receiving community will be able to recognize rapidly that what the organization serves does indeed solve the problem."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This, and specifically the third condition, can feel so obvious that you may overlook it altogether."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "But it is important."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Certifying or verifying a solution should take signifi- cantly less effort than it took to solve the problem; otherwise, future benefi- ciaries would have to spend as much time as you did to figure out how what you produced solves their problem."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Giving your hunch the structure of a problem",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "You may take these attributes of solved real-world problems as principles to start working on your hunch."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The problem that gives you purpose\u2014 regardless of how elusive it may still be\u2014must satisfy three simple condi- tions."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "You ought to be able to:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "imagine one or more specific solutions,"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "describetheproblemorwhatasolutiontotheproblemmustachieve,and"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "verify when the problem is solved."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Your first hunch will most likely address these three conditions only partially."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "As a matter of fact, hunches, at first, are either incomplete or wrong about several aspects of the problem."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Most often the imagined solution, \u201cthe product,\u201d is wrong\u2014so much so that making it a purpose to identify the ways in which you are wrong may prove to be the most successful strategy."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Being wrong can be detected easily because at first, your best guesses for the three conditions will likely contradict one an- other."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "That\u2019s what prototyping and, more generally, trial and error are for: to resolve those contradictions."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "These three conditions build a purpose around your initial hunch that has the structure of a problem like the ones successful innovations solve."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "There are advantages to focusing on something that has the struc- ture of a problem over focusing on a technology, a product, or a startup idea\u2014even when the specifics of the problem are still elusive, when the technological idea is pure and you still believe it is capable of solving every problem, or when you are convinced your imaginary product is perfect."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Working with these three conditions helps keep you honest."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For in- stance, it is more difficult to fall in love with that product you imagine if you must at the same time persuade yourself that any solution to the problem you imagine must achieve a specific set of things dictated by the problem, not the product."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Ditto for a technology."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "As you innovate, your purpose is to make the problem increasingly clear and specific."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Focusing on the problem will also help you find a way to apply the same kind of mental operations we know work for problem solving, which you began to learn intuitively as a child and have been practicing ever since."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Finally, these three conditions give you something to do right away."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "No matter how tenuous your hunch, each of the condi- tions above gives you a way to strengthen it by making the problem tangible."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Making the problem tangible",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "You begin to understand the problem by working on it\u2014either the solution, what the solution needs to achieve, or the means to verify your solution."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Let me show you by example each of these three ways to work on your hunch."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Working on the first condition\u2014the solution you imagine\u2014is the most readily apparent option to make your problem tangible."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Each of the exam- ples in chapter 1 involved an early prototype of an imagined solution."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The prototypes history has recorded may not have been the very first ones\u2014 many of them worked, and hardly anything works as expected the first time you try."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "But they are early enough to suggest a given about first prototypes."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Each used readily available parts and demonstrated or enabled aspects of the eventual innovation."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Henry Ford\u2019s early \u201cquadricycle,\u201d for example, demon- strated aspects of the affordable car and enabled Ford to move forward; he eventually developed the assembly line and the financing innovations that made the Model T affordable."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Dr. Maiman likely realized how to pump light using a flash lamp over an earlier incarnation of his laser design."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Johnny Chung Lee\u2019s website of projects showed how to produce several fully work- ing systems."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In my telling of the Greenpeace story, I call the Amchitka trip an innovation prototype, but billboards and the boat that sank are both early prototypes."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "If you decide to make the problem tangible by working on the solution you imagine, you do not need to spend time worrying about whether your solution is an innovation."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "With the examples I shared in chapter 1 as guid- ance, you have to be ready to accept that your innovations will emerge along the way."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "You can also work on your hunch by simulating the problem or what a solution must achieve."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This may appear to be a distraction when you are fo- cused solely on a product."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It isn\u2019t a distraction when the objective is to under- stand the problem."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Problems that seem difficult to grasp may be easy to \u201csimulate.\u201d For in- stance, in August 2013, several newspapers reported on Brendan O\u2019Connor\u2019sdemonstration of the problem of wireless security and privacy."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "O\u2019Connor\u2014a security researcher and a law student\u2014reportedly wondered how easy it would be for a private citizen to monitor the movements of everyone on a street."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "At a cost of $57 per box, he put together a bunch of parts\u2014some plastic cases, some credit-card-size computers, some inexpensive sensors and Wi-Fi adaptors\u2014that he connected to a command-and-control system, and then created a way to visualize all the wireless traffic his system would pick up, in- cluding smartphone traffic.5 He named the box CreepyDOL and built ten such boxes."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "He presented his system at several security conferences."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "O\u2019Connor\u2019s purpose, as reported by different news agencies, was not to deploy the system for espionage."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The system he built can be seen as an illustra- tion of the obsolescence of privacy protec-tion laws at the time."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It shows the ease withwhich private citizens can spy on each oth-er\u2019s digital lives, and it probably also helpedhim market his services as a security consul-tant."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It is a prototype of the problem, not asolution."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "By making the digital privacyproblem tangible, CreepyDOL specifiedimplicitly many of the things a solutionwould need to achieve without ever needingto propose one."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It also provided a tangi-ble platform for further exploration."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Finally, you can work on your hunch by assessing strategies to determine the problem is solved."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This may seem counterintuitive at first."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "In truth we do it all the time, but think about it only after the fact: For instance, most estab- lished businesses have quality-assurance practices; government bodies have certification and compliance tests and criteria."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Even mathematical problems are phrased as \u201cfind X,\u201d where X is generally specified via a set of conditions that the unknown has to satisfy; problem solvers are encouraged to find ways to verify their solution."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "These are all strategies to verify that the candidate product or solution meets what\u2019s expected."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "When both problem and solu- tion seem too elusive to get you started, you may still be able to begin byworking on a \u201cverifier.\u201d The idea is simple: If by happenstance you were to stumble upon a candidate solution, how would you verify that it in- deed solves the problem?"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The X-Prize Foundation model to develop prizes offers several ex- amples of \u201cverifiers.\u201d The first X-Prize, later named the Ansari X-Prize, was conceived around 1995 with the vision to \u201cmake space travel safe, af-fordable and accessible to every- one through the creation of a per- sonal spaceflight industry.\u201d6 That was the problem the foundation wanted solved\u2014or, more specifi- cally, traveling to space was the problem."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Rather than specifying a solu- tion or working on a solution, the X-Prize Foundation worked on specifying what a solution would need to achieve."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The aim of the X- Prize became persuading people that a private space industry was possible and empowering entrepre- neurs to get that industry started.The winning team would \u201cbuild and launch a spacecraft capable of car- rying three people to 100 kilometers above the earth\u2019s surface, twice within two weeks.\u201d In 2004, Spaceship One did just that and won the $10 million award."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The statement \u201cbuild and launch\u201d is, in fact, a verifier\u2014a tool to determine the challenge had been met."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "These examples illustrate general strategies to make virtually any problem tangible."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The examples show tangible demonstrations of prob- lems that range from products, to new industries, academia, policy, and law, to name a few."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "They show what I mean by prototyping innova- tions: rendering your problem tangible so you can bring together theknowledge and skills you have and the knowledge and skills you will ac- quire toward the development of an organization that will ultimately solve the problem."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "You learn and innovate as you go."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Innovating and problem solving",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "There is a lot of work to do from the initial hunch until an organization that sustainably solves a problem is in place."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Along the way, it is very easy to become enamored with intermediate steps or pose difficult questions such as \u201cWhen should I stop ideating?\u201d or \u201cWhen should I start executing?\u201d In other words, it is not uncommon to ask questions that implicitly assume there is an \u201canswer at the end of the book.\u201d Not only is that not the case, but it\u2019s also an unproductive way of thinking about innovating."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It is a trap."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "While there may seem to be some comfort in seeing the process of innovating as having specific, definable stages governed by \u201cprogress indicators,\u201d you benefit most when you abandon the expectation of linearity and liken progress to learning about the problem."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Giving your hunch the structure of a problem protects you from falling into the trap."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It shifts your mind-set away from certain isolated aspects of your innovating, such as the organization, or the technology, or the product, or the design, or manufacturing, or its placement; it makes them all auxiliary elements to the problem."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Nothing is \u201cpretty\u201d until the problem is solved, nor does it need to be."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The characterization of innovations in terms of the problems they solve makes innovating akin to a very general kind of problem solving in which both the problem and the solution are discovered as part of the process."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The problem that will give you purpose is unlike mathematical, scientific, engineering, or even market problems."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Such problems generally come speci- fied by a well-defined set of parts, or by a reasonably well-defined endpoint."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The kinds of problems we seek to address with innovations, whether inspired by the market, society, or technology, are fairly sophisticated constructs that may at first lack any definition\u2014everything, even the endpoint, is a choice you make."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In his book How to Solve It, first published in 1945, George P\u00f3lya describes problem solving formally with a list of mental operations.7 He introduces them as questions teachers and problem solvers may pose to themselves to aid progress in resolving a problem, as well as to uncover signs of progress when progress is not readily apparent."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "P\u00f3lya groups the questions into four phases: understand the problem, make a plan, carry out the plan, and look back on your work to see whether you could solve the problem in a better way."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "P\u00f3lya was writing about mathematical problems and was extrapolat- ing to practical problems that have a clear endpoint."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "But problem solving can be generalized to the broader problems you encounter when innovat- ing."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "This structure\u2014solvable, recognizable, and decidable\u2014establishes for an innovation problem the same structure as mathematical problems."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "So, in principle, you should be able to begin making your problem clearer by posing to yourself the questions P\u00f3lya offers\u2014something you\u2019ll have to do at several points along the way."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "However, because the data, the un- knowns, and the conditions that define your problem are also part of what you need to solve for, you are going to need more to go on."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "P\u00f3lya provides numerous recommendations of ways to overcome dif- ficulty or lack of progress when solving a problem."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For example:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "\u201cIf you can\u2019t solve a problem, then there is an easier problem you can solve: find it."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": " \u201cIf you cannot solve the proposed problem, try to solve first some related problem."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Could you imagine a more accessible related problem?\u201d"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "\u201cDraw a hypothetical figure which supposes the condition of the problem satisfied in all its parts.\u201d"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "These three recommendations provide a good basis for generalizing problem solving to innovating."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "The first thing to realize is that the prob- lem you are proposing very likely lives at a scale far beyond your immedi- ate resources."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "So, you need to find an easier or more accessible version of your innovation problem to solve."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Put another way, you need to scale the problem you want to solve down to a scale at which it corresponds to the resources you have to understand the problem."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "For a mathematical problem, a figure would help you turn something otherwise abstract into something tangible that helps your intellect and senses work together."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Blueprints or models serve the same purpose for practical and engineering problems."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "For entrepreneurship and innova- tion, you might use a slide-deck."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "But that can help you only so much; a lot remains abstract."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "If you\u2019ve brought your problem to a resource-friend- ly scale, though, there are other things you can do to realize the same value that figures offer in solving mathematical problems."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "You can physi- cally prototype any aspect of your problem, or, as P\u00f3lya puts it, you can build a prototype that \u201cassumes the condition of the problem satisfied in all of its parts.\u201d That, of course, might include a gizmo, but it can also include an organization, distribution, marketing, manufacturing, and so on."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "At that scale, you don\u2019t have to limit yourself to prototyping form alone."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "You should strive to prototype function."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "So, you can generalize problem solving to innovating if you work on bringing the problem first to a resource-friendly scale, and work at that scale to make the problem tangible, prototyping all aspects of your even- tual solution\u2014and, in so doing, implicitly outlining all areas in which innovations may be required."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "After that, your task will be to understand your problem at one scale and work toward scaling up successive demon- strations of the problem."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The final problem you\u2019ll solve will likely differ substantially from the problem you thought you were solving at first."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "That is because your first ex- pression of the problem was, with high probability, ill informed if not out- right wrong."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "That\u2019s all right; the purpose of your first hunch was to get you started."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "You\u2019ll discover how wrong as your innovation prototype evolves to- ward scale."
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

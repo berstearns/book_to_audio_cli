@@ -28,7 +28,7 @@ if __name__ == "__main__":
     input("confirm?")
     choice = None
     engine = pyttsx3.init()
-    book_filepath = os.path.join("books",filename)
+    book_filepath = filename
     chapters = json.load(open(book_filepath))
 
     while True:

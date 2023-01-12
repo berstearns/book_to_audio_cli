@@ -1,0 +1,375 @@
+[
+    {
+        "type": "chapter",
+        "number": 1,
+        "sections": [
+            {
+                "type": "section",
+                "title": "Chapter 4..Our First Use Case: Flask API and Service Layer",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Back to our allocations project!"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Figure 4-1 shows the point we reached at the end of Chapter 2, which covered the Repository pattern"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In this chapter, we discuss the differences between orchestration logic, business logic, and interfacing code, and we introduce the Service Layer pattern to take care of orchestrating our workflows and defining the use cases of our system."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "We\u2019ll also discuss testing: by combining the Service Layer with our repository abstraction over the database, we\u2019re able to write fast tests, not just of our domain model but of the entire workflow for a use case."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Figure 4-2 shows what we\u2019re aiming for: we\u2019re going to add a Flask API that will talk to the service layer, which will serve as the entrypoint to our domain model."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Because our service layer depends on the AbstractRepository, we can unit test it by using FakeRepository but run our production code using SqlAlchemyRepository."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "In our diagrams, we are using the convention that new components are highlighted with bold text/lines (and yellow/orange color, if you\u2019re reading a digital version)."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Connecting Our Application to the Real World",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Like any good agile team, we\u2019re hustling to try to get an MVP out and in front of the users to start gathering feedback."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We have the core of our domain model and the domain service we need to allocate orders, and we have the repository interface for permanent storage."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Let\u2019s plug all the moving parts together as quickly as we can and then refactor toward a cleaner architecture."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Here\u2019s our plan:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "1."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Use Flask to put an API endpoint in front of our allocate domain service."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Wire up the database session and our repository."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Test it with an end-to-end test and some quick-and-dirty SQL to prepare test data."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "2."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Refactor out a service layer that can serve as an abstraction to capture the use case and that will sit between Flask and our domain model."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Build some service-layer tests and show how they can use FakeRepository."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "3."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Experiment with different types of parameters for our service layer functions; show that using primitive data types allows the service layer\u2019s clients (our tests and our Flask API) to be decoupled from the model layer."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "A First End-to-End Test",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "No one is interested in getting into a long terminology debate about what counts as an end-to-end (E2E) test versus a functional test versus an acceptance test versus an integration test versus a unit test."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Different projects need different combinations of tests, and we\u2019ve seen perfectly successful projects just split things into \u201cfast tests\u201d and \u201cslow tests.\u201d"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "For now, we want to write one or maybe two tests that are going to exercise a \u201creal\u201d API endpoint (using HTTP) and talk to a real database."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Let\u2019s call them end-to-end tests because it\u2019s one of the most self-explanatory names."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "The following shows a first cut:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "A first API test (test_api.py)"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Everyone solves these problems in different ways, but you\u2019re going to need some way of spinning up Flask, possibly in a container, and of talking to a Postgres database."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "If you want to see how we did it, check out Appendix B."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "The Straightforward Implementation",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "mplementing things in the most obvious way, you might get something like this:First cut of Flask app (flask_app.py)"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "So far, so good."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "No need for too much more of your \u201carchitecture astronaut\u201d nonsense, Bob and Harry, you may be thinking."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "But hang on a minute\u2014there\u2019s no commit."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "We\u2019re not actually saving our allocation to the database."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Now we need a second test, either one that will inspect the database state after (not very black- boxy), or maybe one that checks that we can\u2019t allocate a second line if a first should have already depleted the batch:"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Error Conditions That Require Database Checks",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "If we keep going like this, though, things are going to get uglier and uglier.Suppose we want to add a bit of error handling."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "What if the domain raises an error, for a SKU that\u2019s out of stock?"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Or what about a SKU that doesn\u2019t even exist?"
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "That\u2019s not something the domain even knows about, nor should it."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "It\u2019s more of a sanity check that we should implement at the database layer, before we even invoke the domain service."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Now we\u2019re looking at two more end-to-end tests:batch1, batch2 = random_batchref(1), random_batchref(2)order1, order2 = random_orderid(1), random_orderid(2)add_stock([    (batch1, sku, 10, '2011-01-01'),    (batch2, sku, 10, '2011-01-02'),])line1 = {'orderid': order1, 'sku': sku, 'qty': 10}line2 = {'orderid': order2, 'sku': sku, 'qty': 10}url = config.get_api_url()# first order uses up all stock in batch 1r = requests.post(f'{url}/allocate', json=line1) assert r.status_code == 201assert r.json()['batchref'] == batch1# second order should go to batch 2r = requests.post(f'{url}/allocate', json=line2) assert r.status_code == 201assert r.json()['batchref'] == batch2Yet more tests at the E2E layer (test_api.py)"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "And sure, we could implement it in the Flask app too:Flask app starting to get crufty (flask_app.py)"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "But our Flask app is starting to look a bit unwieldy."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "And our number of E2E tests is starting to get out of control, and soon we\u2019ll end up with an inverted test pyramid (or \u201cice-cream cone model,\u201d as Bob likes to call it)."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "title": "Introducing a Service Layer, and Using FakeRepository to Unit Test It",
+                "paragraphs": [
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "If we look at what our Flask app is doing, there\u2019s quite a lot of what we might call orchestration\u2014fetching stuff out of our repository, validating our input against database state, handling errors, and committing in the happy path."
+                            },
+                            {
+                                "type": "sentence",
+                                "text": "Most of these things don\u2019t have anything to do with having a web API endpoint (you\u2019d need them if you were building a CLI, for example; see Appendix C), and they\u2019re not really things that need to be tested by end-to-end tests."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "It often makes sense to split out a service layer, sometimes called an orchestration layer or a use-case layer."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Do you remember the FakeRepository that we prepared in Chapter 3?"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Our fake repository, an in-memory collection of batches (test_services.py)"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "sentences": [
+                            {
+                                "type": "sentence",
+                                "text": "Here\u2019s where it will come in useful; it lets us test our service layer with nice, fast unit tests:Unit testing with fakes at the service layer (test_services.py)"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
